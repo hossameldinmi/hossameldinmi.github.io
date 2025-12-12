@@ -6,14 +6,15 @@ class ResumeData {
   // Personal Information
   static const String name = 'Hossam Eldin Mahmoud';
   static const String title = 'Senior Mobile Software Engineer';
-  static const String subtitle = 'Flutter Developer | Mobile Engineer';
+  static const String subtitle =
+      'Senior Mobile Engineer | Native iOS & Flutter Specialist\nEnterprise Mobile Architecture | Open Source Enthusiast';
   static const String email = 'hossameldinmi@gmail.com';
   static const String linkedIn = 'linkedin.com/in/hossameldinmi';
   static const String github = 'github.com/hossameldinmi';
 
   // Professional Summary
   static const String summary =
-      'Senior Mobile Software Engineer with 6+ years of experience specializing in Flutter and cross-platform '
+      'Senior Mobile Software Engineer with 7+ years of experience specializing in Flutter and cross-platform '
       'mobile development. Proven track record of building production-ready applications and SDKs for '
       'government services, fintech, and social platforms. Published 5+ open-source packages on pub.dev '
       'with thousands of downloads. Strong expertise in Flutter, Dart, native iOS/Android integration, '

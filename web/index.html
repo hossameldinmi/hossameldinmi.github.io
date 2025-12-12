@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <base href="$FLUTTER_BASE_HREF">
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Professional CV Website">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CV Website</title>
+  <title>Hossam Eldin Mahmoud - Senior Mobile Software Engineer</title>
   <link rel="manifest" href="manifest.json">
   <script>
     var serviceWorkerVersion = null;
   </script>
   <script src="flutter.js" defer></script>
 </head>
+
 <body>
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
             appRunner.runApp();
           });
         }
@@ -29,4 +31,5 @@
     });
   </script>
 </body>
+
 </html>
