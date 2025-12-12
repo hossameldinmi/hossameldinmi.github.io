@@ -27,8 +27,8 @@ The website automatically deploys to GitHub Pages when you push to the `main` br
 3. **Enable GitHub Pages (First time only):**
    - Go to your repository on GitHub
    - Click **Settings** → **Pages**
-   - Under **Source**, select **gh-pages** branch
-   - Click **Save**
+   - Under **Source**, select **GitHub Actions**
+   - The workflow will automatically deploy on the next push
 
 ### Method 2: Manual Deployment
 
