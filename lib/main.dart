@@ -14,7 +14,7 @@ class CVWebsite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Professional CV',
+      title: 'Hossam Eldin Mahmoud - Senior Mobile Software Engineer',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
