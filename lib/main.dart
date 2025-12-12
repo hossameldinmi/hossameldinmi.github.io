@@ -906,10 +906,13 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                       ),
                     ),
                     if (widget.onTap != null)
-                      Icon(
-                        Icons.open_in_new,
-                        color: Colors.blue.shade400,
-                        size: 20,
+                      Tooltip(
+                        message: 'Open on pub.dev',
+                        child: Icon(
+                          Icons.open_in_new,
+                          color: Colors.blue.shade400,
+                          size: 20,
+                        ),
                       ),
                   ],
                 ),
