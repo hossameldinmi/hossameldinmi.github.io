@@ -123,7 +123,7 @@ class CVHomePage extends StatelessWidget {
                 child: CircleAvatar(
                   radius: isMobile ? 40 : (isTablet ? 50 : 60),
                   backgroundColor: Colors.white,
-                  backgroundImage: const AssetImage('assets/photo.jpg'),
+                  backgroundImage: const AssetImage('assets/photo.JPG'),
                 ),
               ),
               const SizedBox(height: 20),
