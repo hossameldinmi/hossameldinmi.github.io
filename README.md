@@ -4,7 +4,7 @@ A modern, responsive CV/Portfolio website built with Flutter Web.
 
 ## 🌐 Live Demo
 
-Visit the live website at: [https://hossameldinmi.github.io/website/](https://hossameldinmi.github.io/website/)
+Visit the live website at: [https://hossameldinmi.github.io](https://hossameldinmi.github.io)
 
 ## 🚀 Deployment to GitHub Pages
 
@@ -50,7 +50,7 @@ git push origin main
 
 ```bash
 # Build the web app
-flutter build web --release --base-href "/website/"
+flutter build web --release --base-href "/"
 
 # The build output is in build/web/
 # Push to GitHub and the workflow will deploy it
