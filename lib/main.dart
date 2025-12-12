@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'resume_data.dart';
 
 void main() {
   runApp(const CVWebsite());
@@ -82,7 +83,7 @@ class CVHomePage extends StatelessWidget {
   Widget _buildHeader(BuildContext context) {
     final isMobile = _isMobile(context);
     final isTablet = _isTablet(context);
-    
+
     return TweenAnimationBuilder<double>(
       duration: const Duration(milliseconds: 800),
       tween: Tween(begin: 0.0, end: 1.0),
@@ -133,7 +134,7 @@ class CVHomePage extends StatelessWidget {
               AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
-                    'Hossam Eldin Mahmoud',
+                    ResumeData.name,
                     textStyle: GoogleFonts.roboto(
                       fontSize: _getResponsiveFontSize(context, 48),
                       fontWeight: FontWeight.bold,
@@ -148,7 +149,7 @@ class CVHomePage extends StatelessWidget {
               FadeInUpAnimation(
                 delay: const Duration(milliseconds: 1000),
                 child: Text(
-                  'Flutter Developer | Mobile Engineer',
+                  ResumeData.subtitle,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
                     fontSize: _getResponsiveFontSize(context, 24),
@@ -184,10 +185,7 @@ class CVHomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'Experienced Flutter developer with a background in Mechanical Engineering. '
-                  'Specialized in mobile application development with expertise in creating open-source packages '
-                  'and SDKs. Strong track record of building production-ready Flutter applications and contributing '
-                  'to the developer community through published packages on pub.dev.',
+                  ResumeData.summary,
                   style: GoogleFonts.roboto(
                     fontSize: _getResponsiveFontSize(context, 18),
                     height: 1.6,
@@ -203,16 +201,11 @@ class CVHomePage extends StatelessWidget {
   }
 
   Widget _buildSkillsSection(BuildContext context) {
-    final skills = [
-      {'category': 'Mobile Development', 'items': ['Flutter', 'Dart', 'iOS', 'Android', 'SDK Development']},
-      {'category': 'Programming Languages', 'items': ['Dart', 'JavaScript', 'TypeScript', 'Python', 'Java']},
-      {'category': 'Tools & Technologies', 'items': ['Git', 'Firebase', 'REST APIs', 'CI/CD', 'Package Publishing']},
-      {'category': 'Soft Skills', 'items': ['Open Source', 'Problem Solving', 'Team Collaboration', 'Technical Writing']},
-    ];
+    final skills = ResumeData.skills;
 
     final isMobile = _isMobile(context);
     final isTablet = _isTablet(context);
-    
+
     // Determine grid column count based on screen size
     int getColumnCount() {
       if (isMobile) return 1;
@@ -245,14 +238,14 @@ class CVHomePage extends StatelessWidget {
                     final columnCount = getColumnCount();
                     final spacing = isMobile ? 15.0 : 20.0;
                     final itemWidth = (constraints.maxWidth - (spacing * (columnCount - 1))) / columnCount;
-                    
+
                     return Wrap(
                       spacing: spacing,
                       runSpacing: spacing,
                       children: skills.asMap().entries.map((entry) {
                         final index = entry.key;
                         final skillGroup = entry.value;
-                        
+
                         return AnimatedSkillCard(
                           delay: Duration(milliseconds: 400 + (index * 100)),
                           width: isMobile ? double.infinity : itemWidth,
@@ -272,29 +265,7 @@ class CVHomePage extends StatelessWidget {
   }
 
   Widget _buildExperienceSection(BuildContext context) {
-    final experiences = [
-      {
-        'title': 'Senior Software Engineer',
-        'company': 'Tech Company Inc.',
-        'period': '2020 - Present',
-        'description': 'Led development of multiple high-impact projects using modern technologies. '
-            'Mentored junior developers and established best practices for the team.',
-      },
-      {
-        'title': 'Software Developer',
-        'company': 'Innovation Labs',
-        'period': '2018 - 2020',
-        'description': 'Developed and maintained web and mobile applications. '
-            'Collaborated with cross-functional teams to deliver quality software solutions.',
-      },
-      {
-        'title': 'Junior Developer',
-        'company': 'StartUp Co.',
-        'period': '2016 - 2018',
-        'description': 'Built responsive web applications and contributed to various projects. '
-            'Gained experience in full-stack development and agile methodologies.',
-      },
-    ];
+    final experiences = ResumeData.experiences;
 
     final isMobile = _isMobile(context);
 
@@ -320,7 +291,7 @@ class CVHomePage extends StatelessWidget {
                 ...experiences.asMap().entries.map((entry) {
                   final index = entry.key;
                   final exp = entry.value;
-                  
+
                   return AnimatedExperienceCard(
                     delay: Duration(milliseconds: 500 + (index * 100)),
                     experience: exp,
@@ -338,47 +309,11 @@ class CVHomePage extends StatelessWidget {
   }
 
   Widget _buildProjectsSection(BuildContext context) {
-    final projects = [
-      {
-        'name': 'Tawakkalna SDK Flutter',
-        'description': 'Flutter SDK integration for the Tawakkalna government application, '
-            'enabling secure identity verification and COVID-19 health status integration.',
-        'technologies': ['Flutter', 'Dart', 'SDK Development'],
-        'url': 'https://pub.dev/packages/tawakkalna_sdk_flutter',
-      },
-      {
-        'name': 'Media Source',
-        'description': 'Flutter package for advanced media handling and source management, '
-            'providing seamless media integration capabilities.',
-        'technologies': ['Flutter', 'Dart', 'Media APIs'],
-        'url': 'https://pub.dev/packages/media_source',
-      },
-      {
-        'name': 'File Type Plus',
-        'description': 'Enhanced file type detection package for Flutter applications, '
-            'supporting comprehensive file format identification.',
-        'technologies': ['Flutter', 'Dart', 'File Systems'],
-        'url': 'https://pub.dev/packages/file_type_plus',
-      },
-      {
-        'name': 'File Sized',
-        'description': 'Utility package for file size formatting and management in Flutter, '
-            'simplifying file size operations and display.',
-        'technologies': ['Flutter', 'Dart', 'Utilities'],
-        'url': 'https://pub.dev/packages/file_sized',
-      },
-      {
-        'name': 'Time of Day',
-        'description': 'Time management and formatting package for Flutter applications, '
-            'providing intuitive time selection and display features.',
-        'technologies': ['Flutter', 'Dart', 'UI Components'],
-        'url': 'https://pub.dev/packages/time_of_day',
-      },
-    ];
+    final projects = ResumeData.projects;
 
     final isMobile = _isMobile(context);
     final isTablet = _isTablet(context);
-    
+
     int getColumnCount() {
       if (isMobile) return 1;
       if (isTablet) return 2;
@@ -410,23 +345,21 @@ class CVHomePage extends StatelessWidget {
                     final columnCount = getColumnCount();
                     final spacing = isMobile ? 15.0 : 20.0;
                     final itemWidth = (constraints.maxWidth - (spacing * (columnCount - 1))) / columnCount;
-                    
+
                     return Wrap(
                       spacing: spacing,
                       runSpacing: spacing,
                       children: projects.asMap().entries.map((entry) {
                         final index = entry.key;
                         final project = entry.value;
-                        
+
                         return AnimatedProjectCard(
                           delay: Duration(milliseconds: 600 + (index * 100)),
                           width: isMobile ? double.infinity : itemWidth,
                           project: project,
                           titleFontSize: _getResponsiveFontSize(context, 20),
                           descFontSize: _getResponsiveFontSize(context, 15),
-                          onTap: project['url'] != null
-                              ? () => _launchURL(project['url'] as String)
-                              : null,
+                          onTap: project['url'] != null ? () => _launchURL(project['url'] as String) : null,
                         );
                       }).toList(),
                     );
@@ -441,42 +374,11 @@ class CVHomePage extends StatelessWidget {
   }
 
   Widget _buildContactsSection(BuildContext context) {
-    final contacts = [
-      {
-        'icon': Icons.email,
-        'label': 'Email',
-        'value': 'hossameldinmi@gmail.com',
-        'url': 'mailto:hossameldinmi@gmail.com',
-      },
-      {
-        'icon': Icons.phone,
-        'label': 'Phone',
-        'value': '+1 (123) 456-7890',
-        'url': 'tel:+11234567890',
-      },
-      {
-        'icon': Icons.location_on,
-        'label': 'Location',
-        'value': 'City, Country',
-        'url': null,
-      },
-      {
-        'icon': Icons.link,
-        'label': 'LinkedIn',
-        'value': 'linkedin.com/in/hossameldinmi',
-        'url': 'https://linkedin.com/in/hossameldinmi',
-      },
-      {
-        'icon': Icons.code,
-        'label': 'GitHub',
-        'value': 'github.com/hossameldinmi',
-        'url': 'https://github.com/hossameldinmi',
-      },
-    ];
+    final contacts = ResumeData.contacts;
 
     final isMobile = _isMobile(context);
     final isTablet = _isTablet(context);
-    
+
     int getColumnCount() {
       if (isMobile) return 1;
       if (isTablet) return 2;
@@ -507,21 +409,19 @@ class CVHomePage extends StatelessWidget {
                     final columnCount = getColumnCount();
                     final spacing = isMobile ? 15.0 : 20.0;
                     final itemWidth = (constraints.maxWidth - (spacing * (columnCount - 1))) / columnCount;
-                    
+
                     return Wrap(
                       spacing: spacing,
                       runSpacing: spacing,
                       children: contacts.asMap().entries.map((entry) {
                         final index = entry.key;
                         final contact = entry.value;
-                        
+
                         return AnimatedContactCard(
                           delay: Duration(milliseconds: 700 + (index * 100)),
                           width: isMobile ? double.infinity : itemWidth,
                           contact: contact,
-                          onTap: contact['url'] != null
-                              ? () => _launchURL(contact['url'] as String)
-                              : null,
+                          onTap: contact['url'] != null ? () => _launchURL(contact['url'] as String) : null,
                           fontSize: _getResponsiveFontSize(context, 16),
                         );
                       }).toList(),
@@ -545,7 +445,7 @@ class CVHomePage extends StatelessWidget {
       color: Colors.grey[800],
       child: Center(
         child: Text(
-          '© ${DateTime.now().year} Hossam Eldin Mahmoud. All rights reserved.',
+          '© ${DateTime.now().year} ${ResumeData.name}. All rights reserved.',
           style: GoogleFonts.roboto(
             fontSize: _getResponsiveFontSize(context, 14),
             color: Colors.white70,
@@ -580,8 +480,7 @@ class FadeInUpAnimation extends StatefulWidget {
   State<FadeInUpAnimation> createState() => _FadeInUpAnimationState();
 }
 
-class _FadeInUpAnimationState extends State<FadeInUpAnimation>
-    with SingleTickerProviderStateMixin {
+class _FadeInUpAnimationState extends State<FadeInUpAnimation> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacity;
   late Animation<Offset> _offset;
@@ -674,8 +573,7 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
                   ]
                 : [],
           ),
-          transform: Matrix4.identity()
-            ..translate(0.0, _isHovered ? -4.0 : 0.0),
+          transform: Matrix4.identity()..translate(0.0, _isHovered ? -4.0 : 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -754,8 +652,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
               ),
             ],
           ),
-          transform: Matrix4.identity()
-            ..translate(0.0, _isHovered ? -2.0 : 0.0),
+          transform: Matrix4.identity()..translate(0.0, _isHovered ? -2.0 : 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -882,8 +779,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                     ]
                   : [],
             ),
-            transform: Matrix4.identity()
-              ..translate(0.0, _isHovered ? -4.0 : 0.0),
+            transform: Matrix4.identity()..translate(0.0, _isHovered ? -4.0 : 0.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -1003,8 +899,7 @@ class _AnimatedContactCardState extends State<AnimatedContactCard> {
                 ),
               ],
             ),
-            transform: Matrix4.identity()
-              ..translate(0.0, _isHovered ? -2.0 : 0.0),
+            transform: Matrix4.identity()..translate(0.0, _isHovered ? -2.0 : 0.0),
             child: Row(
               children: [
                 Icon(
