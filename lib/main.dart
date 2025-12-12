@@ -133,7 +133,7 @@ class CVHomePage extends StatelessWidget {
               AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
-                    'Your Name',
+                    'Hossam Eldin Mahmoud',
                     textStyle: GoogleFonts.roboto(
                       fontSize: _getResponsiveFontSize(context, 48),
                       fontWeight: FontWeight.bold,
@@ -148,7 +148,7 @@ class CVHomePage extends StatelessWidget {
               FadeInUpAnimation(
                 delay: const Duration(milliseconds: 1000),
                 child: Text(
-                  'Professional Title',
+                  'Software Engineer',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
                     fontSize: _getResponsiveFontSize(context, 24),
@@ -184,9 +184,9 @@ class CVHomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  'Passionate and results-driven professional with extensive experience in software development. '
-                  'Skilled in creating innovative solutions and delivering high-quality products. '
-                  'Strong background in modern technologies and best practices.',
+                  'Passionate software engineer with experience in web and mobile development. '
+                  'Skilled in creating innovative solutions using modern technologies including Flutter, '
+                  'Dart, and various web frameworks. Strong background in building responsive and user-friendly applications.',
                   style: GoogleFonts.roboto(
                     fontSize: _getResponsiveFontSize(context, 18),
                     height: 1.6,
@@ -203,9 +203,9 @@ class CVHomePage extends StatelessWidget {
 
   Widget _buildSkillsSection(BuildContext context) {
     final skills = [
-      {'category': 'Programming Languages', 'items': ['Dart', 'JavaScript', 'Python', 'Java']},
-      {'category': 'Frameworks & Tools', 'items': ['Flutter', 'React', 'Node.js', 'Git']},
-      {'category': 'Soft Skills', 'items': ['Team Leadership', 'Problem Solving', 'Communication', 'Agile']},
+      {'category': 'Programming Languages', 'items': ['Dart', 'JavaScript', 'Python', 'Java', 'TypeScript']},
+      {'category': 'Frameworks & Tools', 'items': ['Flutter', 'React', 'Node.js', 'Git', 'Firebase']},
+      {'category': 'Soft Skills', 'items': ['Problem Solving', 'Team Collaboration', 'Communication', 'Agile Development']},
     ];
 
     final isMobile = _isMobile(context);
@@ -423,8 +423,8 @@ class CVHomePage extends StatelessWidget {
       {
         'icon': Icons.email,
         'label': 'Email',
-        'value': 'your.email@example.com',
-        'url': 'mailto:your.email@example.com',
+        'value': 'hossameldinmi@gmail.com',
+        'url': 'mailto:hossameldinmi@gmail.com',
       },
       {
         'icon': Icons.phone,
@@ -447,8 +447,8 @@ class CVHomePage extends StatelessWidget {
       {
         'icon': Icons.code,
         'label': 'GitHub',
-        'value': 'github.com/yourusername',
-        'url': 'https://github.com/yourusername',
+        'value': 'github.com/hossameldinmi',
+        'url': 'https://github.com/hossameldinmi',
       },
     ];
 
@@ -523,7 +523,7 @@ class CVHomePage extends StatelessWidget {
       color: Colors.grey[800],
       child: Center(
         child: Text(
-          '© ${DateTime.now().year} Your Name. All rights reserved.',
+          '© ${DateTime.now().year} Hossam Eldin Mahmoud. All rights reserved.',
           style: GoogleFonts.roboto(
             fontSize: _getResponsiveFontSize(context, 14),
             color: Colors.white70,
