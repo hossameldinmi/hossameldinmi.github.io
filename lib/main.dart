@@ -355,7 +355,7 @@ class CVHomePage extends StatelessWidget {
                           project: project,
                           titleFontSize: _getResponsiveFontSize(context, 20),
                           descFontSize: _getResponsiveFontSize(context, 15),
-                          onTap: project['url'] != null ? () => _launchURL(project['url'] as String) : null,
+                          onTap: () => _launchURL(project.url),
                         );
                       }).toList(),
                     );
@@ -417,7 +417,7 @@ class CVHomePage extends StatelessWidget {
                           delay: Duration(milliseconds: 700 + (index * 100)),
                           width: isMobile ? double.infinity : itemWidth,
                           contact: contact,
-                          onTap: contact['url'] != null ? () => _launchURL(contact['url'] as String) : null,
+                          onTap: () => _launchURL(contact.url),
                           fontSize: _getResponsiveFontSize(context, 16),
                         );
                       }).toList(),
@@ -526,7 +526,7 @@ class _FadeInUpAnimationState extends State<FadeInUpAnimation> with SingleTicker
 class AnimatedSkillCard extends StatefulWidget {
   final Duration delay;
   final double width;
-  final Map<String, dynamic> skillGroup;
+  final Skill skillGroup;
   final double fontSize;
 
   const AnimatedSkillCard({
@@ -574,7 +574,7 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                widget.skillGroup['category'] as String,
+                widget.skillGroup.category,
                 style: GoogleFonts.roboto(
                   fontSize: widget.fontSize,
                   fontWeight: FontWeight.bold,
@@ -585,7 +585,7 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: (widget.skillGroup['items'] as List<String>).map((skill) {
+                children: widget.skillGroup.items.map((skill) {
                   return Chip(
                     label: Text(skill),
                     backgroundColor: Colors.blue.shade100,
@@ -605,7 +605,7 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
 
 class AnimatedExperienceCard extends StatefulWidget {
   final Duration delay;
-  final Map<String, dynamic> experience;
+  final Experience experience;
   final bool isMobile;
   final double titleFontSize;
   final double textFontSize;
@@ -657,7 +657,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          widget.experience['title'] as String,
+                          widget.experience.title,
                           style: GoogleFonts.roboto(
                             fontSize: widget.titleFontSize,
                             fontWeight: FontWeight.bold,
@@ -666,7 +666,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          widget.experience['period'] as String,
+                          widget.experience.period,
                           style: GoogleFonts.roboto(
                             fontSize: widget.textFontSize,
                             color: Colors.grey[600],
@@ -679,7 +679,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                       children: [
                         Expanded(
                           child: Text(
-                            widget.experience['title'] as String,
+                            widget.experience.title,
                             style: GoogleFonts.roboto(
                               fontSize: widget.titleFontSize,
                               fontWeight: FontWeight.bold,
@@ -688,7 +688,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                           ),
                         ),
                         Text(
-                          widget.experience['period'] as String,
+                          widget.experience.period,
                           style: GoogleFonts.roboto(
                             fontSize: widget.textFontSize,
                             color: Colors.grey[600],
@@ -698,7 +698,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                     ),
               const SizedBox(height: 8),
               Text(
-                widget.experience['company'] as String,
+                widget.experience.company,
                 style: GoogleFonts.roboto(
                   fontSize: widget.textFontSize + 2,
                   fontWeight: FontWeight.w500,
@@ -707,7 +707,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
               ),
               const SizedBox(height: 12),
               Text(
-                widget.experience['description'] as String,
+                widget.experience.description,
                 style: GoogleFonts.roboto(
                   fontSize: widget.textFontSize,
                   height: 1.5,
@@ -725,7 +725,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
 class AnimatedProjectCard extends StatefulWidget {
   final Duration delay;
   final double width;
-  final Map<String, dynamic> project;
+  final Project project;
   final double titleFontSize;
   final double descFontSize;
   final VoidCallback? onTap;
@@ -789,7 +789,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        widget.project['name'] as String,
+                        widget.project.name,
                         style: GoogleFonts.roboto(
                           fontSize: widget.titleFontSize,
                           fontWeight: FontWeight.bold,
@@ -810,7 +810,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                 ),
                 const SizedBox(height: 16),
                 Text(
-                  widget.project['description'] as String,
+                  widget.project.description,
                   style: GoogleFonts.roboto(
                     fontSize: widget.descFontSize,
                     height: 1.5,
@@ -821,7 +821,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
-                  children: (widget.project['technologies'] as List<String>).map((tech) {
+                  children: widget.project.technologies.map((tech) {
                     return Container(
                       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
@@ -850,7 +850,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
 class AnimatedContactCard extends StatefulWidget {
   final Duration delay;
   final double width;
-  final Map<String, dynamic> contact;
+  final Contact contact;
   final VoidCallback? onTap;
   final double fontSize;
 
@@ -899,7 +899,7 @@ class _AnimatedContactCardState extends State<AnimatedContactCard> {
             child: Row(
               children: [
                 Icon(
-                  widget.contact['icon'] as IconData,
+                  widget.contact.icon,
                   color: Colors.blue.shade600,
                   size: 32,
                 ),
@@ -909,7 +909,7 @@ class _AnimatedContactCardState extends State<AnimatedContactCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.contact['label'] as String,
+                        widget.contact.label,
                         style: GoogleFonts.roboto(
                           fontSize: 14,
                           color: Colors.grey[600],
@@ -917,7 +917,7 @@ class _AnimatedContactCardState extends State<AnimatedContactCard> {
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        widget.contact['value'] as String,
+                        widget.contact.value,
                         style: GoogleFonts.roboto(
                           fontSize: widget.fontSize,
                           fontWeight: FontWeight.w500,
@@ -927,7 +927,7 @@ class _AnimatedContactCardState extends State<AnimatedContactCard> {
                     ],
                   ),
                 ),
-                if (widget.contact['url'] != null)
+                if (widget.contact.url.isNotEmpty)
                   Icon(
                     Icons.arrow_forward,
                     color: Colors.blue.shade400,
