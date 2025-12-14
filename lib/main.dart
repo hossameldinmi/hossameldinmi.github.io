@@ -72,6 +72,8 @@ class CVHomePage extends StatelessWidget {
             _buildSkillsSection(context),
             _buildExperienceSection(context),
             _buildProjectsSection(context),
+            _buildProjectsSection(context),
+            _buildBlogSection(context),
             _buildContactsSection(context),
             _buildFooter(context),
           ],
@@ -130,7 +132,7 @@ class CVHomePage extends StatelessWidget {
               AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
-                    ResumeData.name,
+                    ResumeData.profile.name,
                     textStyle: GoogleFonts.roboto(
                       fontSize: _getResponsiveFontSize(context, 48),
                       fontWeight: FontWeight.bold,
@@ -145,7 +147,7 @@ class CVHomePage extends StatelessWidget {
               FadeInUpAnimation(
                 delay: const Duration(milliseconds: 1000),
                 child: Text(
-                  ResumeData.subtitle,
+                  ResumeData.profile.title,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(
                     fontSize: _getResponsiveFontSize(context, 24),
@@ -181,7 +183,7 @@ class CVHomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  ResumeData.summary,
+                  ResumeData.profile.about,
                   style: GoogleFonts.roboto(
                     fontSize: _getResponsiveFontSize(context, 18),
                     height: 1.6,
@@ -197,7 +199,7 @@ class CVHomePage extends StatelessWidget {
   }
 
   Widget _buildSkillsSection(BuildContext context) {
-    final skills = ResumeData.skills;
+    final skills = ResumeData.profile.skills;
 
     final isMobile = _isMobile(context);
     final isTablet = _isTablet(context);
@@ -261,7 +263,7 @@ class CVHomePage extends StatelessWidget {
   }
 
   Widget _buildExperienceSection(BuildContext context) {
-    final experiences = ResumeData.experiences;
+    final experiences = ResumeData.profile.experience;
 
     final isMobile = _isMobile(context);
 
@@ -305,7 +307,7 @@ class CVHomePage extends StatelessWidget {
   }
 
   Widget _buildProjectsSection(BuildContext context) {
-    final projects = ResumeData.projects;
+    final projects = ResumeData.profile.projects;
 
     final isMobile = _isMobile(context);
     final isTablet = _isTablet(context);
@@ -369,11 +371,123 @@ class CVHomePage extends StatelessWidget {
     );
   }
 
+  Widget _buildBlogSection(BuildContext context) {
+    if (ResumeData.profile.blogs.isEmpty) return const SizedBox.shrink();
+
+    final blogs = ResumeData.profile.blogs;
+    final isMobile = _isMobile(context);
+    final isTablet = _isTablet(context);
+
+    int getColumnCount() {
+      if (isMobile) return 1;
+      if (isTablet) return 2;
+      return 3;
+    }
+
+    return FadeInUpAnimation(
+      delay: const Duration(milliseconds: 550),
+      child: Container(
+        padding: _getResponsivePadding(context),
+        color: Colors.grey[50],
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Blog',
+                  style: GoogleFonts.roboto(
+                    fontSize: _getResponsiveFontSize(context, 32),
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue.shade800,
+                  ),
+                ),
+                const SizedBox(height: 30),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    final columnCount = getColumnCount();
+                    final spacing = isMobile ? 15.0 : 20.0;
+                    final itemWidth = (constraints.maxWidth - (spacing * (columnCount - 1))) / columnCount;
+
+                    return Wrap(
+                      spacing: spacing,
+                      runSpacing: spacing,
+                      children: blogs.asMap().entries.map((entry) {
+                        final index = entry.key;
+                        final blog = entry.value;
+
+                        // Reusing AnimatedProjectCard as a template for Blog for now
+                        // In a real scenario, we'd create a specific AnimatedBlogCard
+                        return AnimatedProjectCard(
+                          delay: Duration(milliseconds: 600 + (index * 100)),
+                          width: isMobile ? double.infinity : itemWidth,
+                          project: Project(
+                            title: blog.title,
+                            description: blog.description,
+                            url: blog.url,
+                            technologies: blog.skills, // Mapping skills to technologies for display
+                          ),
+                          titleFontSize: _getResponsiveFontSize(context, 20),
+                          descFontSize: _getResponsiveFontSize(context, 15),
+                          onTap: () => _launchURL(blog.url),
+                        );
+                      }).toList(),
+                    );
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   Widget _buildContactsSection(BuildContext context) {
-    final contacts = ResumeData.contacts;
+    final contact = ResumeData.profile.contact;
 
     final isMobile = _isMobile(context);
     final isTablet = _isTablet(context);
+
+    // Create a list of mappable items for the grid
+    final contactItems = [
+      if (contact.email != null)
+        {
+          'icon': Icons.email,
+          'label': 'Email',
+          'value': contact.email!,
+          'url': 'mailto:${contact.email}',
+        },
+      if (contact.phone != null)
+        {
+          'icon': Icons.phone,
+          'label': 'Phone',
+          'value': contact.phone.toString(),
+          'url': 'tel:${contact.phone?.number.replaceAll(' ', '')}',
+        },
+      if (contact.linkedinUrl != null)
+        {
+          'icon': Icons.link,
+          'label': 'LinkedIn',
+          'value': 'linkedin.com/in/hossameldinmi', // Simplified for display
+          'url': contact.linkedinUrl!,
+        },
+      if (contact.githubUrl != null)
+        {
+          'icon': Icons.code,
+          'label': 'GitHub',
+          'value': 'github.com/hossameldinmi',
+          'url': contact.githubUrl!,
+        },
+      if (contact.websiteUrl != null)
+        {
+          'icon': Icons.web,
+          'label': 'Website',
+          'value': 'hossameldinmi.github.io',
+          'url': contact.websiteUrl!,
+        },
+    ];
 
     int getColumnCount() {
       if (isMobile) return 1;
@@ -409,15 +523,18 @@ class CVHomePage extends StatelessWidget {
                     return Wrap(
                       spacing: spacing,
                       runSpacing: spacing,
-                      children: contacts.asMap().entries.map((entry) {
+                      children: contactItems.asMap().entries.map((entry) {
                         final index = entry.key;
-                        final contact = entry.value;
+                        final item = entry.value;
 
                         return AnimatedContactCard(
                           delay: Duration(milliseconds: 700 + (index * 100)),
                           width: isMobile ? double.infinity : itemWidth,
-                          contact: contact,
-                          onTap: () => _launchURL(contact.url),
+                          icon: item['icon'] as IconData,
+                          label: item['label'] as String,
+                          value: item['value'] as String,
+                          url: item['url'] as String,
+                          onTap: () => _launchURL(item['url'] as String),
                           fontSize: _getResponsiveFontSize(context, 16),
                         );
                       }).toList(),
@@ -441,7 +558,7 @@ class CVHomePage extends StatelessWidget {
       color: Colors.grey[800],
       child: Center(
         child: Text(
-          '© ${DateTime.now().year} ${ResumeData.name}. All rights reserved.',
+          '© ${DateTime.now().year} ${ResumeData.profile.name}. All rights reserved.',
           style: GoogleFonts.roboto(
             fontSize: _getResponsiveFontSize(context, 14),
             color: Colors.white70,
@@ -526,7 +643,7 @@ class _FadeInUpAnimationState extends State<FadeInUpAnimation> with SingleTicker
 class AnimatedSkillCard extends StatefulWidget {
   final Duration delay;
   final double width;
-  final Skill skillGroup;
+  final SkillSection skillGroup;
   final double fontSize;
 
   const AnimatedSkillCard({
@@ -585,9 +702,9 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
               Wrap(
                 spacing: 8,
                 runSpacing: 8,
-                children: widget.skillGroup.items.map((skill) {
+                children: widget.skillGroup.skills.map((skill) {
                   return Chip(
-                    label: Text(skill),
+                    label: Text(skill.name),
                     backgroundColor: Colors.blue.shade100,
                     labelStyle: GoogleFonts.roboto(
                       color: Colors.blue.shade900,
@@ -605,7 +722,7 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
 
 class AnimatedExperienceCard extends StatefulWidget {
   final Duration delay;
-  final Experience experience;
+  final Position experience;
   final bool isMobile;
   final double titleFontSize;
   final double textFontSize;
@@ -666,7 +783,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          widget.experience.period,
+                          widget.experience.dateRange.toString(),
                           style: GoogleFonts.roboto(
                             fontSize: widget.textFontSize,
                             color: Colors.grey[600],
@@ -688,7 +805,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                           ),
                         ),
                         Text(
-                          widget.experience.period,
+                          widget.experience.dateRange.toString(),
                           style: GoogleFonts.roboto(
                             fontSize: widget.textFontSize,
                             color: Colors.grey[600],
@@ -698,7 +815,7 @@ class _AnimatedExperienceCardState extends State<AnimatedExperienceCard> {
                     ),
               const SizedBox(height: 8),
               Text(
-                widget.experience.company,
+                widget.experience.companyName,
                 style: GoogleFonts.roboto(
                   fontSize: widget.textFontSize + 2,
                   fontWeight: FontWeight.w500,
@@ -789,7 +906,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        widget.project.name,
+                        widget.project.title,
                         style: GoogleFonts.roboto(
                           fontSize: widget.titleFontSize,
                           fontWeight: FontWeight.bold,
@@ -850,7 +967,10 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
 class AnimatedContactCard extends StatefulWidget {
   final Duration delay;
   final double width;
-  final Contact contact;
+  final IconData icon;
+  final String label;
+  final String value;
+  final String url;
   final VoidCallback? onTap;
   final double fontSize;
 
@@ -858,7 +978,10 @@ class AnimatedContactCard extends StatefulWidget {
     super.key,
     required this.delay,
     required this.width,
-    required this.contact,
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.url,
     this.onTap,
     required this.fontSize,
   });
@@ -898,41 +1021,43 @@ class _AnimatedContactCardState extends State<AnimatedContactCard> {
             transform: Matrix4.identity()..translate(0.0, _isHovered ? -2.0 : 0.0),
             child: Row(
               children: [
-                Icon(
-                  widget.contact.icon,
-                  color: Colors.blue.shade600,
-                  size: 32,
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: Colors.blue.shade50,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Icon(
+                    widget.icon,
+                    color: Colors.blue.shade800,
+                    size: 24,
+                  ),
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(width: 15),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        widget.contact.label,
+                        widget.label,
                         style: GoogleFonts.roboto(
-                          fontSize: 14,
+                          fontSize: widget.fontSize * 0.85,
                           color: Colors.grey[600],
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        widget.contact.value,
+                        widget.value,
                         style: GoogleFonts.roboto(
                           fontSize: widget.fontSize,
                           fontWeight: FontWeight.w500,
                           color: Colors.blue.shade800,
                         ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
                 ),
-                if (widget.contact.url.isNotEmpty)
-                  Icon(
-                    Icons.arrow_forward,
-                    color: Colors.blue.shade400,
-                    size: 20,
-                  ),
               ],
             ),
           ),
