@@ -71,8 +71,8 @@ Change the base href in both files:
 
 **File: `.github/workflows/deploy.yml` (line 35)**
 ```yaml
-- name: Build web
-  run: flutter build web --release --base-href "/website/"
+      - name: Build web
+        run: flutter build web --release --base-href "/website/"
 ```
 
 **File: `deploy.sh` (line 26)**

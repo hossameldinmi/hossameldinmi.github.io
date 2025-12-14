@@ -1,8 +1,19 @@
 #!/bin/bash
 
-# Script to help update local repository after renaming on GitHub
-# This script should be run AFTER renaming the repository on GitHub from "website" to "hossameldinmi.github.io"
+# Repository Rename Helper Script
+# 
+# Purpose: Update local git configuration after renaming repository on GitHub
+# Usage: ./update-after-rename.sh
+#
+# This script should be run AFTER renaming the repository on GitHub 
+# from "website" to "hossameldinmi.github.io"
+#
+# What it does:
+# - Prompts for confirmation that GitHub rename is complete
+# - Updates the git remote URL to match the new repository name
+# - Verifies the remote configuration
 
+# Exit immediately if any command exits with a non-zero status
 set -e
 
 echo "=========================================="
@@ -30,9 +41,22 @@ echo ""
 echo "✅ Updating local repository configuration..."
 echo ""
 
+# Extract current username from git remote
+CURRENT_REMOTE=$(git remote get-url origin)
+USERNAME=$(echo "$CURRENT_REMOTE" | sed -E 's|.*github\.com[:/]([^/]+)/.*|\1|')
+
+if [ -z "$USERNAME" ]; then
+    echo "❌ Could not detect GitHub username from remote URL"
+    echo "Current remote: $CURRENT_REMOTE"
+    exit 1
+fi
+
+echo "📝 Detected GitHub username: $USERNAME"
+echo ""
+
 # Update remote URL
 echo "📝 Updating remote URL..."
-git remote set-url origin https://github.com/hossameldinmi/hossameldinmi.github.io.git
+git remote set-url origin "https://github.com/${USERNAME}/${USERNAME}.github.io.git"
 
 # Verify the change
 echo "✅ Remote URL updated!"
@@ -54,8 +78,8 @@ echo "   git commit -m 'Update after repository rename'"
 echo "   git push origin main"
 echo ""
 echo "2. Your site will be available at:"
-echo "   https://hossameldinmi.github.io/"
+echo "   https://${USERNAME}.github.io/"
 echo ""
 echo "3. Monitor deployment in the Actions tab:"
-echo "   https://github.com/hossameldinmi/hossameldinmi.github.io/actions"
+echo "   https://github.com/${USERNAME}/${USERNAME}.github.io/actions"
 echo ""
