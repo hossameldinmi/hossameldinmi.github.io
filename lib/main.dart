@@ -26,7 +26,7 @@ class CVWebsite extends StatelessWidget {
         textTheme: GoogleFonts.robotoTextTheme(),
         useMaterial3: true,
       ),
-      home: const CVHomePage(),
+      home: const SelectionArea(child: CVHomePage()),
     );
   }
 }
@@ -769,10 +769,6 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
     // If company has no experiences, we might still want to show it or hide it.
     // Assuming company always has at least one experience or we show empty card.
 
-    final companyName = widget.company.name;
-    final companyLogo = widget.company.logo;
-    final experiences = widget.company.experiences;
-
     return FadeInUpAnimation(
       delay: widget.delay,
       child: MouseRegion(
@@ -800,7 +796,7 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
               // Company Header
               Row(
                 children: [
-                  if (companyLogo != null)
+                  if (widget.company.logo != null)
                     Padding(
                       padding: const EdgeInsets.only(right: 12.0),
                       child: ClipRRect(
@@ -808,7 +804,7 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
                         child: SizedBox(
                           width: 48,
                           height: 48,
-                          child: companyLogo.fold(
+                          child: widget.company.logo!.fold(
                             network: (n) => Image.network(n.uri.toString()),
                             asset: (a) => Image.asset(a.assetPath),
                             orElse: () => const SizedBox(),
@@ -820,7 +816,7 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        companyName,
+                        widget.company.name,
                         style: GoogleFonts.roboto(
                           fontSize: widget.titleFontSize,
                           fontWeight: FontWeight.bold,
@@ -829,7 +825,7 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        '${widget.company.totalDuration} · ${widget.company.dateRange.forResume}',
+                        '${widget.company.dateRange.forResume} · ${widget.company.totalDuration}',
                         style: GoogleFonts.roboto(
                           fontSize: widget.textFontSize * 0.9,
                           color: Colors.grey[600],
@@ -842,39 +838,42 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
               ),
               const SizedBox(height: 24),
               // Timeline logic
-              ...experiences.asMap().entries.map((entry) {
+              ...widget.company.experiences.asMap().entries.map((entry) {
                 final index = entry.key;
                 final exp = entry.value;
-                final isLast = index == experiences.length - 1;
+                final isFirst = index == 0;
+                final hasMultipleExperiences = widget.company.experiences.length > 1;
+                final isLast = index == widget.company.experiences.length - 1;
 
                 return IntrinsicHeight(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Timeline Line and Dot
-                      SizedBox(
-                        width: 40,
-                        child: Column(
-                          children: [
-                            Container(
-                              width: 12,
-                              height: 12,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.blue.shade600,
-                                border: Border.all(color: Colors.blue.shade100, width: 2),
-                              ),
-                            ),
-                            if (!isLast)
-                              Expanded(
-                                child: Container(
-                                  width: 2,
-                                  color: Colors.blue.shade200,
+                      if (hasMultipleExperiences)
+                        SizedBox(
+                          width: 40,
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 12,
+                                height: 12,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: isFirst ? Colors.blue.shade600 : Colors.blue.shade200,
+                                  border: Border.all(color: Colors.blue.shade100, width: 2),
                                 ),
                               ),
-                          ],
+                              if (!isLast)
+                                Expanded(
+                                  child: Container(
+                                    width: 2,
+                                    color: Colors.blue.shade200,
+                                  ),
+                                ),
+                            ],
+                          ),
                         ),
-                      ),
                       const SizedBox(width: 8),
                       // Role Details
                       Expanded(
