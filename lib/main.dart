@@ -9,7 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'dart:html' as html;
+import 'package:web/web.dart' as web;
+import 'dart:js_interop';
 import 'src/data/resume_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -1495,14 +1496,15 @@ class _CVHomePageState extends State<CVHomePage> {
       final byteData = await rootBundle.load(assetPath);
       final bytes = byteData.buffer.asUint8List();
 
-      final blob = html.Blob([bytes]);
-      final url = html.Url.createObjectUrlFromBlob(blob);
+      final blob = web.Blob([bytes.toJS].toJS);
+      final url = web.URL.createObjectURL(blob);
 
-      html.AnchorElement(href: url)
-        ..setAttribute('download', fileName)
-        ..click();
+      final anchor = web.document.createElement('a') as web.HTMLAnchorElement;
+      anchor.href = url;
+      anchor.download = fileName;
+      anchor.click();
 
-      html.Url.revokeObjectUrl(url);
+      web.URL.revokeObjectURL(url);
     } catch (e) {
       debugPrint('Could not download asset file: $e');
     }
