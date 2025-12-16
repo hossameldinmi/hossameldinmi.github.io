@@ -218,9 +218,10 @@ class _CVHomePageState extends State<CVHomePage> {
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
+      extendBodyBehindAppBar: isMobile,
       appBar: isMobile
           ? AppBar(
-              backgroundColor: theme.scaffoldBackgroundColor,
+              backgroundColor: Colors.transparent,
               elevation: 0,
               iconTheme: IconThemeData(color: theme.colorScheme.primary),
             )
@@ -424,10 +425,12 @@ class _CVHomePageState extends State<CVHomePage> {
           ...List.generate(20, (index) => _buildFloatingParticle(index)),
 
           // Main content
-          Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 60),
-              child: isMobile ? _buildMobileHeroContent(context) : _buildDesktopHeroContent(context, screenWidth),
+          SafeArea(
+            child: Center(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 60),
+                child: isMobile ? _buildMobileHeroContent(context) : _buildDesktopHeroContent(context, screenWidth),
+              ),
             ),
           ),
 
@@ -1446,6 +1449,16 @@ class _CVHomePageState extends State<CVHomePage> {
                 fontSize: _getResponsiveFontSize(context, 14),
                 color: theme.colorScheme.primary,
               ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'With help from Claude, GitHub Copilot & Antigravity',
+              style: GoogleFonts.roboto(
+                fontSize: _getResponsiveFontSize(context, 12),
+                color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7),
+                fontStyle: FontStyle.italic,
+              ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 10),
             Text(
