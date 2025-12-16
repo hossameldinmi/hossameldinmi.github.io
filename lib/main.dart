@@ -30,7 +30,13 @@ class _CVWebsiteState extends State<CVWebsite> {
 
   void _toggleTheme() {
     setState(() {
-      _themeMode = _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+      if (_themeMode == ThemeMode.system) {
+        // Get current system brightness to toggle correctly from system mode
+        final brightness = WidgetsBinding.instance.platformDispatcher.platformBrightness;
+        _themeMode = brightness == Brightness.dark ? ThemeMode.light : ThemeMode.dark;
+      } else {
+        _themeMode = _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+      }
     });
   }
 
