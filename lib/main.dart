@@ -970,15 +970,6 @@ class _CVHomePageState extends State<CVHomePage> {
                 child: Row(
                   children: [
                     Text(
-                      '01.',
-                      style: GoogleFonts.firaCode(
-                        fontSize: _getResponsiveFontSize(context, 24),
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
                       'About Me',
                       style: GoogleFonts.roboto(
                         fontSize: _getResponsiveFontSize(context, 32),
@@ -1046,15 +1037,6 @@ class _CVHomePageState extends State<CVHomePage> {
                 delay: const Duration(milliseconds: 200),
                 child: Row(
                   children: [
-                    Text(
-                      '02.',
-                      style: GoogleFonts.firaCode(
-                        fontSize: _getResponsiveFontSize(context, 24),
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
                     Text(
                       'Skills',
                       style: GoogleFonts.roboto(
@@ -1129,15 +1111,6 @@ class _CVHomePageState extends State<CVHomePage> {
                 child: Row(
                   children: [
                     Text(
-                      '03.',
-                      style: GoogleFonts.firaCode(
-                        fontSize: _getResponsiveFontSize(context, 24),
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Text(
                       'Work Experience',
                       style: GoogleFonts.roboto(
                         fontSize: _getResponsiveFontSize(context, 32),
@@ -1206,15 +1179,6 @@ class _CVHomePageState extends State<CVHomePage> {
                 delay: const Duration(milliseconds: 200),
                 child: Row(
                   children: [
-                    Text(
-                      '04.',
-                      style: GoogleFonts.firaCode(
-                        fontSize: _getResponsiveFontSize(context, 24),
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
                     Text(
                       'Projects',
                       style: GoogleFonts.roboto(
@@ -1303,15 +1267,6 @@ class _CVHomePageState extends State<CVHomePage> {
                 delay: const Duration(milliseconds: 200),
                 child: Row(
                   children: [
-                    Text(
-                      '05.',
-                      style: GoogleFonts.firaCode(
-                        fontSize: _getResponsiveFontSize(context, 24),
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
                     Text(
                       'Blog & Articles',
                       style: GoogleFonts.roboto(
@@ -1402,16 +1357,6 @@ class _CVHomePageState extends State<CVHomePage> {
                 delay: const Duration(milliseconds: 200),
                 child: Column(
                   children: [
-                    Text(
-                      '06.',
-                      style: GoogleFonts.firaCode(
-                        fontSize: _getResponsiveFontSize(context, 20),
-                        color: theme.colorScheme.primary,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 20),
                     Text(
                       'Get In Touch',
                       style: GoogleFonts.roboto(
