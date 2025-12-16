@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:web/web.dart' as web;
 import 'dart:js_interop';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'src/data/resume_data.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -672,13 +673,13 @@ class _CVHomePageState extends State<CVHomePage> {
     final socialItems = <Map<String, dynamic>>[];
 
     if (contact.linkedinUrl != null) {
-      socialItems.add({'icon': Icons.business, 'url': contact.linkedinUrl!});
+      socialItems.add({'icon': FontAwesomeIcons.linkedin, 'url': contact.linkedinUrl!});
     }
     if (contact.githubUrl != null) {
-      socialItems.add({'icon': Icons.code, 'url': contact.githubUrl!});
+      socialItems.add({'icon': FontAwesomeIcons.github, 'url': contact.githubUrl!});
     }
     if (contact.email != null) {
-      socialItems.add({'icon': Icons.email, 'url': 'mailto:${contact.email}'});
+      socialItems.add({'icon': Icons.mail_outline, 'url': 'mailto:${contact.email}'});
     }
 
     return Row(
@@ -1441,11 +1442,11 @@ class _CVHomePageState extends State<CVHomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (ResumeData.profile.contact.linkedinUrl != null)
-                  _buildFooterIcon(Icons.business, ResumeData.profile.contact.linkedinUrl!),
+                  _buildFooterIcon(FontAwesomeIcons.linkedin, ResumeData.profile.contact.linkedinUrl!),
                 if (ResumeData.profile.contact.githubUrl != null)
-                  _buildFooterIcon(Icons.code, ResumeData.profile.contact.githubUrl!),
+                  _buildFooterIcon(FontAwesomeIcons.github, ResumeData.profile.contact.githubUrl!),
                 if (ResumeData.profile.contact.email != null)
-                  _buildFooterIcon(Icons.email, 'mailto:${ResumeData.profile.contact.email}'),
+                  _buildFooterIcon(Icons.mail_outline, 'mailto:${ResumeData.profile.contact.email}'),
               ],
             ),
             const SizedBox(height: 20),
