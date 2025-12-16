@@ -1,11 +1,11 @@
 {
     "name": "Hossam Eldin Mahmoud",
-    "short_name": "Hossam Eldin Mahmoud",
+    "short_name": "Hossam Eldin",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "Professional CV Website",
+    "background_color": "#0A192F",
+    "theme_color": "#64FFDA",
+    "description": "Flutter Developer & Mobile Specialist - Portfolio",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
