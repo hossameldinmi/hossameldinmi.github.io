@@ -32,10 +32,281 @@
 
   <title>Hossam Eldin Mahmoud - Senior Mobile Software Engineer</title>
   <link rel="manifest" href="manifest.json">
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0A192F 0%, #1A2744 100%);
+      z-index: 9999;
+      overflow: hidden;
+    }
+    
+    /* Animated background particles */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #64FFDA;
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 6s infinite ease-in-out;
+    }
+    
+    .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 5s; }
+    .particle:nth-child(2) { left: 20%; top: 80%; animation-delay: 1s; animation-duration: 7s; }
+    .particle:nth-child(3) { left: 60%; top: 30%; animation-delay: 2s; animation-duration: 6s; }
+    .particle:nth-child(4) { left: 80%; top: 70%; animation-delay: 1.5s; animation-duration: 5.5s; }
+    .particle:nth-child(5) { left: 30%; top: 50%; animation-delay: 0.5s; animation-duration: 6.5s; }
+    .particle:nth-child(6) { left: 70%; top: 10%; animation-delay: 2.5s; animation-duration: 5.8s; }
+    .particle:nth-child(7) { left: 50%; top: 90%; animation-delay: 1.2s; animation-duration: 6.2s; }
+    .particle:nth-child(8) { left: 90%; top: 40%; animation-delay: 0.8s; animation-duration: 5.3s; }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.3; }
+      25% { transform: translateY(-20px) translateX(10px); opacity: 0.5; }
+      50% { transform: translateY(-10px) translateX(-10px); opacity: 0.3; }
+      75% { transform: translateY(-30px) translateX(5px); opacity: 0.6; }
+    }
+    
+    .loading-content {
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    /* Logo container with pulse effect */
+    .logo-container {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 30px;
+    }
+    
+    .logo-ring {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 3px solid transparent;
+      border-radius: 50%;
+      animation: rotate 3s linear infinite;
+    }
+    
+    .logo-ring:nth-child(1) {
+      border-top-color: #64FFDA;
+      border-right-color: #64FFDA;
+      animation-duration: 2s;
+    }
+    
+    .logo-ring:nth-child(2) {
+      border-bottom-color: #5A9FFF;
+      border-left-color: #5A9FFF;
+      animation-duration: 3s;
+      animation-direction: reverse;
+    }
+    
+    .logo-ring:nth-child(3) {
+      border-top-color: #8B5CF6;
+      animation-duration: 2.5s;
+      width: 80%;
+      height: 80%;
+      top: 10%;
+      left: 10%;
+    }
+    
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Code symbol in center */
+    .logo-symbol {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Courier New', monospace;
+      font-size: 48px;
+      font-weight: bold;
+      color: #64FFDA;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+    }
+    
+    /* Loading bar */
+    .loading-bar-container {
+      width: 200px;
+      height: 4px;
+      background: rgba(100, 255, 218, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+      margin: 20px auto;
+      position: relative;
+    }
+    
+    .loading-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #64FFDA, #5A9FFF, #8B5CF6, #64FFDA);
+      background-size: 200% 100%;
+      border-radius: 2px;
+      animation: loading 2s ease-in-out infinite, gradient 3s linear infinite;
+      box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    }
+    
+    @keyframes loading {
+      0% { width: 0%; }
+      50% { width: 100%; }
+      100% { width: 0%; }
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    .loading-text {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-size: 18px;
+      color: #64FFDA;
+      font-weight: 500;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      animation: fadeInOut 2s ease-in-out infinite;
+    }
+    
+    @keyframes fadeInOut {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    
+    /* Dots animation */
+    .loading-dots {
+      display: inline-block;
+      margin-left: 5px;
+    }
+    
+    .loading-dots span {
+      animation: blink 1.4s infinite;
+      animation-fill-mode: both;
+    }
+    
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes blink {
+      0%, 80%, 100% { opacity: 0; }
+      40% { opacity: 1; }
+    }
+    
+    /* Light mode styles */
+    @media (prefers-color-scheme: light) {
+      .loading {
+        background: linear-gradient(135deg, #E0F2FE 0%, #F5F7FA 100%);
+      }
+      
+      .particle {
+        background: #0EA5E9;
+      }
+      
+      .logo-ring:nth-child(1) {
+        border-top-color: #0EA5E9;
+        border-right-color: #0EA5E9;
+      }
+      
+      .logo-ring:nth-child(2) {
+        border-bottom-color: #06B6D4;
+        border-left-color: #06B6D4;
+      }
+      
+      .logo-ring:nth-child(3) {
+        border-top-color: #6366F1;
+      }
+      
+      .logo-symbol {
+        color: #0EA5E9;
+      }
+      
+      .loading-bar-container {
+        background: rgba(14, 165, 233, 0.1);
+      }
+      
+      .loading-bar {
+        background: linear-gradient(90deg, #0EA5E9, #06B6D4, #6366F1, #0EA5E9);
+        background-size: 200% 100%;
+        box-shadow: 0 0 10px rgba(14, 165, 233, 0.5);
+      }
+      
+      .loading-text {
+        color: #0EA5E9;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="loading" id="loading">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    
+    <div class="loading-content">
+      <div class="logo-container">
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-ring"></div>
+        <div class="logo-symbol">&lt;/&gt;</div>
+      </div>
+      
+      <div class="loading-bar-container">
+        <div class="loading-bar"></div>
+      </div>
+      
+      <div class="loading-text">
+        LOADING
+        <span class="loading-dots">
+          <span>.</span><span>.</span><span>.</span>
+        </span>
+      </div>
+    </div>
+  </div>
+  
   <script src="flutter_bootstrap.js" async></script>
+  
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.opacity = '0';
+          loading.style.transition = 'opacity 0.5s ease';
+          setTimeout(function() {
+            loading.style.display = 'none';
+            document.body.style.overflow = 'auto';
+          }, 500);
+        }
+      }, 100);
+    });
+  </script>
 </body>
 
 </html>
