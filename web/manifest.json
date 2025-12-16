@@ -1,23 +1,29 @@
 {
-    "name": "Hossam Eldin Mahmoud",
+    "name": "Hossam Eldin Mahmoud - Senior Mobile Software Engineer",
     "short_name": "Hossam Eldin",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0A192F",
     "theme_color": "#64FFDA",
-    "description": "Flutter Developer & Mobile Specialist - Portfolio",
+    "description": "Senior Cross-Platform Mobile Engineer specializing in Flutter, Dart, and iOS development with 7+ years of experience building high-performance mobile applications.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
+    "categories": ["business", "productivity", "education"],
+    "lang": "en-US",
+    "dir": "ltr",
+    "scope": "/",
     "icons": [
         {
             "src": "icons/Icon-192.png",
             "sizes": "192x192",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "icons/Icon-512.png",
             "sizes": "512x512",
-            "type": "image/png"
+            "type": "image/png",
+            "purpose": "any"
         },
         {
             "src": "icons/Icon-maskable-192.png",
