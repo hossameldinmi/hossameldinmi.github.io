@@ -12,10 +12,11 @@ import 'package:media_source/media_source.dart';
 
 class ResumeData {
   static final profile = LinkedInProfile(
-    name: 'Hossam Eldin Mahmoud',
+    firstName: 'Hossam Eldin',
+    lastName: 'Mahmoud',
     title: 'Senior Mobile Software Engineer',
-    subTitles: [
-      'I build exceptional mobile and web applications that solve real-world problems.',
+    subtitle: 'I build exceptional mobile and web applications that solve real-world problems.',
+    focusList: [
       'Native-iOS',
       'Flutter Specialist',
       'Cross-Platform Mobile Developer',

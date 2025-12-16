@@ -22,7 +22,7 @@ class CVWebsite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hossam Eldin Mahmoud - Senior Mobile Software Engineer',
+      title: '${ResumeData.profile.name} - ${ResumeData.profile.title}',
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark().copyWith(
         primaryColor: Colors.tealAccent,
@@ -188,7 +188,7 @@ class _CVHomePageState extends State<CVHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      '<Hossam Eldin/>',
+                      '<${ResumeData.profile.firstName}/>',
                       style: GoogleFonts.firaCode(
                         color: const Color(0xFF64FFDA),
                         fontSize: 20,
@@ -240,7 +240,7 @@ class _CVHomePageState extends State<CVHomePage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '<Hossam Eldin/>',
+                          '<${ResumeData.profile.firstName}/>',
                           style: GoogleFonts.firaCode(
                             color: const Color(0xFF64FFDA),
                             fontSize: 24,
@@ -393,7 +393,7 @@ class _CVHomePageState extends State<CVHomePage> {
         FadeInUpAnimation(
           delay: const Duration(milliseconds: 600),
           child: Text(
-            ResumeData.profile.name,
+            ResumeData.profile.firstName,
             textAlign: TextAlign.center,
             style: GoogleFonts.roboto(
               fontSize: _getResponsiveFontSize(context, 40),
@@ -416,7 +416,7 @@ class _CVHomePageState extends State<CVHomePage> {
         FadeInUpAnimation(
           delay: const Duration(milliseconds: 1000),
           child: Text(
-            'Specializing in the design and development of highly scalable applications with 4+ years of experience.',
+            ResumeData.profile.subtitle,
             textAlign: TextAlign.center,
             style: GoogleFonts.roboto(
               fontSize: _getResponsiveFontSize(context, 16),
@@ -667,7 +667,7 @@ class _CVHomePageState extends State<CVHomePage> {
               FadeInUpAnimation(
                 delay: const Duration(milliseconds: 400),
                 child: Text(
-                  ResumeData.profile.name,
+                  ResumeData.profile.firstName,
                   style: GoogleFonts.roboto(
                     fontSize: _getResponsiveFontSize(context, 64),
                     fontWeight: FontWeight.bold,
@@ -686,7 +686,7 @@ class _CVHomePageState extends State<CVHomePage> {
                 child: Container(
                   constraints: const BoxConstraints(maxWidth: 500),
                   child: Text(
-                    'Specializing in the design and development of highly scalable applications with 4+ years of experience.',
+                    ResumeData.profile.subtitle,
                     style: GoogleFonts.roboto(
                       fontSize: _getResponsiveFontSize(context, 18),
                       color: const Color(0xFF8892B0),
@@ -788,9 +788,11 @@ class _CVHomePageState extends State<CVHomePage> {
   }
 
   Widget _buildAnimatedTitle(BuildContext context, double fontSize) {
-    return Row(
+    return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // Title - types once and stays
         AnimatedTextKit(
           animatedTexts: [
             TypewriterAnimatedText(
@@ -804,8 +806,40 @@ class _CVHomePageState extends State<CVHomePage> {
             ),
           ],
           totalRepeatCount: 1,
+          displayFullTextOnTap: false,
+          stopPauseOnTap: false,
         ),
-        _BlinkingCursor(fontSize: fontSize),
+        // Separator
+        const SizedBox(height: 8),
+
+        // Focus list - cycles through items
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: AnimatedTextKit(
+                animatedTexts: ResumeData.profile.focusList
+                    .map(
+                      (focus) => TypewriterAnimatedText(
+                        focus,
+                        textStyle: GoogleFonts.roboto(
+                          fontSize: fontSize - 6,
+                          fontWeight: FontWeight.w600,
+                          color: const Color(0xFF64FFDA),
+                        ),
+                        speed: const Duration(milliseconds: 100),
+                      ),
+                    )
+                    .toList(),
+                repeatForever: true,
+                pause: const Duration(milliseconds: 2000),
+                displayFullTextOnTap: false,
+                stopPauseOnTap: false,
+              ),
+            ),
+            _BlinkingCursor(fontSize: fontSize),
+          ],
+        ),
       ],
     );
   }
@@ -1353,7 +1387,7 @@ class _CVHomePageState extends State<CVHomePage> {
             ),
             const SizedBox(height: 10),
             Text(
-              '© ${DateTime.now().year} ${ResumeData.profile.name}',
+              '© ${DateTime.now().year} ${ResumeData.profile.firstName}',
               style: GoogleFonts.roboto(
                 fontSize: _getResponsiveFontSize(context, 14),
                 color: const Color(0xFF8892B0),

@@ -9,9 +9,12 @@ import 'package:cv_website/src/models/skill_section.dart';
 import 'package:media_source/media_source.dart';
 
 class LinkedInProfile {
-  final String name;
+  final String firstName;
+  final String lastName;
+  String get name => '$firstName $lastName';
   final String title;
-  final List<String> subTitles;
+  final String subtitle;
+  final List<String> focusList;
   final String about;
   final MediaSource<ImageType> profilePicture;
   final String location;
@@ -26,9 +29,11 @@ class LinkedInProfile {
   final MediaSource<DocumentType>? resume;
 
   const LinkedInProfile({
-    required this.name,
+    required this.firstName,
+    required this.lastName,
     required this.title,
-    required this.subTitles,
+    required this.subtitle,
+    required this.focusList,
     required this.about,
     required this.profilePicture,
     required this.location,
