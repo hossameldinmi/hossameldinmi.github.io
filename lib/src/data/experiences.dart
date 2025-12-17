@@ -12,7 +12,7 @@ class Experiences {
         assetPath: 'assets/logos/ynmo_logo.png',
         mimeType: 'images/png',
         name: 'ynmo_logo.png',
-        size: 2.66.kb,
+        size: 4.03.kb,
       ),
       experiences: [
         Experience(
@@ -32,7 +32,7 @@ class Experiences {
         assetPath: 'assets/logos/portme_logo.png',
         mimeType: 'images/png',
         name: 'portme_logo.png',
-        size: 1.18.kb,
+        size: 3.86.kb,
       ),
       experiences: [
         Experience(

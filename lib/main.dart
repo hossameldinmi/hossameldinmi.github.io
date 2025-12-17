@@ -1,4 +1,5 @@
 import 'dart:math' show cos, sin;
+import 'dart:ui_web' as ui_web;
 import 'package:cv_website/src/models/skill_section.dart';
 import 'package:cv_website/src/models/company.dart';
 import 'package:cv_website/src/models/project.dart';
@@ -377,6 +378,7 @@ class _CVHomePageState extends State<CVHomePage> {
             // _buildProjectsSection(context), // Removing duplicate
             _buildBlogSection(context),
             _buildContactsSection(context),
+            _buildCalendlySection(context),
             _buildFooter(context),
           ],
         ),
@@ -1344,6 +1346,74 @@ class _CVHomePageState extends State<CVHomePage> {
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCalendlySection(BuildContext context) {
+    final isMobile = _isMobile(context);
+    final theme = Theme.of(context);
+
+    return Container(
+      padding: _getResponsivePadding(context).copyWith(
+        top: isMobile ? 60 : 100,
+        bottom: isMobile ? 60 : 100,
+      ),
+      color: theme.scaffoldBackgroundColor,
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(maxWidth: _getMaxContentWidth(context)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              FadeInUpAnimation(
+                delay: const Duration(milliseconds: 200),
+                child: Column(
+                  children: [
+                    Text(
+                      'Schedule a Meeting',
+                      style: GoogleFonts.roboto(
+                        fontSize: _getResponsiveFontSize(context, 32),
+                        fontWeight: FontWeight.bold,
+                        color: theme.textTheme.displayLarge?.color,
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Let\'s connect and discuss your project',
+                      style: GoogleFonts.roboto(
+                        fontSize: _getResponsiveFontSize(context, 18),
+                        color: theme.textTheme.bodyMedium?.color,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 40),
+              FadeInUpAnimation(
+                delay: const Duration(milliseconds: 400),
+                child: Container(
+                  constraints: BoxConstraints(
+                    maxWidth: isMobile ? double.infinity : 900,
+                    minHeight: isMobile ? 600 : 700,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.cardColor,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: theme.colorScheme.primary.withOpacity(0.2),
+                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: const CalendlyWidget(),
                   ),
                 ),
               ),
@@ -2459,6 +2529,68 @@ class _AnimatedCTAButtonState extends State<_AnimatedCTAButton> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+// Calendly Widget using HtmlElementView
+class CalendlyWidget extends StatefulWidget {
+  const CalendlyWidget({super.key});
+
+  @override
+  State<CalendlyWidget> createState() => _CalendlyWidgetState();
+}
+
+class _CalendlyWidgetState extends State<CalendlyWidget> {
+  String? _viewId;
+
+  @override
+  void initState() {
+    super.initState();
+    _viewId = 'calendly-${DateTime.now().millisecondsSinceEpoch}';
+    _registerPlatformView();
+  }
+
+  void _registerPlatformView() {
+    // Register the platform view with theme-aware URL
+    ui_web.platformViewRegistry.registerViewFactory(
+      _viewId!,
+      (int viewId) {
+        final isDark = WidgetsBinding.instance.platformDispatcher.platformBrightness == Brightness.dark;
+
+        // Calendly URL with theme customization
+        final baseUrl = 'https://calendly.com/hossameldinmi';
+        final backgroundColor = isDark ? '0a192f' : 'ffffff';
+        final textColor = isDark ? 'ccd6f6' : '0f172a';
+        final primaryColor = isDark ? '64ffda' : '0ea5e9';
+
+        final themedUrl = '$baseUrl?'
+            'background_color=$backgroundColor&'
+            'text_color=$textColor&'
+            'primary_color=$primaryColor&'
+            'hide_event_type_details=0&'
+            'hide_gdpr_banner=1';
+
+        final iframe = web.HTMLIFrameElement()
+          ..style.border = 'none'
+          ..style.width = '100%'
+          ..style.height = '700px'
+          ..style.borderRadius = '8px'
+          ..src = themedUrl;
+
+        return iframe;
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 700,
+      child: HtmlElementView(
+        viewType: _viewId!,
       ),
     );
   }

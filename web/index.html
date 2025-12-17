@@ -363,6 +363,56 @@
     </div>
   </div>
   
+  <!-- Calendly widget styles and script -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  
+  <!-- Register Calendly platform view before Flutter loads -->
+  <script>
+    // Register the view factory as soon as possible
+    if (!window.flutter_views_registered) {
+      window.flutter_views_registered = {};
+    }
+    
+    window.flutter_views_registered['calendly-inline-widget'] = function(viewId) {
+      const container = document.createElement('div');
+      container.style.width = '100%';
+      container.style.height = '700px';
+      container.id = 'calendly-' + viewId;
+      
+      // Initialize Calendly when the script is loaded
+      function initCalendly() {
+        if (window.Calendly) {
+          window.Calendly.initInlineWidget({
+            url: 'https://calendly.com/hossameldinmi',
+            parentElement: container,
+            prefill: {},
+            utm: {}
+          });
+        } else {
+          // Retry if Calendly hasn't loaded yet
+          setTimeout(initCalendly, 100);
+        }
+      }
+      
+      // Start initialization after a short delay to ensure DOM is ready
+      setTimeout(initCalendly, 500);
+      return container;
+    };
+    
+    // Hook into Flutter's platform view registry when it becomes available
+    window.addEventListener('load', function() {
+      if (window.flutterCanvasKit && window.flutterCanvasKit.PlatformViewRegistry) {
+        for (let viewType in window.flutter_views_registered) {
+          window.flutterCanvasKit.PlatformViewRegistry.registerViewFactory(
+            viewType,
+            window.flutter_views_registered[viewType]
+          );
+        }
+      }
+    });
+  </script>
+  
   <script src="flutter_bootstrap.js" async></script>
   
   <script>
