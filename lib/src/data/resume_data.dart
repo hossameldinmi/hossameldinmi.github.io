@@ -8,6 +8,7 @@ import 'package:cv_website/src/models/contact.dart';
 import 'package:cv_website/src/models/language.dart';
 import 'package:cv_website/src/models/linked_in_profile.dart';
 import 'package:cv_website/src/models/phone_number.dart';
+import 'package:flutter/foundation.dart';
 import 'package:media_source/media_source.dart';
 
 class ResumeData {
@@ -23,7 +24,7 @@ class ResumeData {
       'Enterprise Mobile Architecture Enthusiastic',
       'Open-Source Enthusiast',
     ],
-    calendlyId: 'hossameldinmi',
+    calendlyId: kReleaseMode ? 'hossameldinmi' : null,
     about: '''
 - As a Senior Cross-Platform Mobile Engineer, I specialize in designing and developing high-performance mobile applications using Flutter, Dart, and iOS. With 7+ years of hands-on experience, I focus on delivering scalable, reliable, and user-centric mobile solutions that align with business objectives and enhance digital experiences.
 

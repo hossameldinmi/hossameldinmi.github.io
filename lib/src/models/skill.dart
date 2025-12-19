@@ -3,8 +3,16 @@ import 'package:cv_website/src/models/education.dart';
 import 'package:cv_website/src/models/experience.dart';
 import 'package:cv_website/src/models/project.dart';
 
+enum SkillProficiency {
+  expert, // Green - 20-39%
+  advanced, // Pink/Magenta - 80%+
+  intermediate, // Cyan - 60-79%
+  beginner, // Orange - 40-59%
+}
+
 class Skill {
   final String name;
+  final SkillProficiency proficiency;
   final List<Experience> relatedExperiences = [];
   final List<Education> relatedEducation = [];
   final List<Project> relatedProjects = [];
@@ -12,6 +20,7 @@ class Skill {
 
   Skill({
     required this.name,
+    this.proficiency = SkillProficiency.advanced,
   });
 
   void addExperience(Experience experience) {

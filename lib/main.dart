@@ -1,4 +1,5 @@
 import 'dart:math' show cos, sin;
+import 'package:cv_website/src/models/skill.dart';
 import 'package:cv_website/src/models/skill_section.dart';
 import 'package:cv_website/src/models/company.dart';
 import 'package:cv_website/src/models/project.dart';
@@ -45,32 +46,32 @@ class _CVWebsiteState extends State<CVWebsite> {
   }
 
   ThemeData get _darkTheme => ThemeData.dark().copyWith(
-        primaryColor: Colors.tealAccent,
+        primaryColor: const Color(0xFF00FFC8), // More vibrant teal
         scaffoldBackgroundColor: const Color(0xFF0A192F), // Deep Navy
         cardColor: const Color(0xFF112240), // Lighter Navy
         textTheme: GoogleFonts.robotoTextTheme(ThemeData.dark().textTheme).apply(
-          bodyColor: const Color(0xFF8892B0),
-          displayColor: const Color(0xFFCCD6F6),
+          bodyColor: const Color(0xFF94A3B8), // Brighter gray-blue
+          displayColor: const Color(0xFFE2E8F0), // Brighter white
         ),
         colorScheme: const ColorScheme.dark(
-          primary: Color(0xFF64FFDA), // Teal
-          secondary: Color(0xFF64FFDA),
+          primary: Color(0xFF00FFC8), // More vibrant teal
+          secondary: Color(0xFF00FFC8),
           surface: Color(0xFF112240),
         ),
         useMaterial3: true,
       );
 
   ThemeData get _lightTheme => ThemeData.light().copyWith(
-        primaryColor: const Color(0xFF64FFDA),
+        primaryColor: const Color(0xFF0891E5), // More vibrant blue
         scaffoldBackgroundColor: const Color(0xFFF5F7FA), // Light gray
         cardColor: Colors.white,
         textTheme: GoogleFonts.robotoTextTheme(ThemeData.light().textTheme).apply(
-          bodyColor: const Color(0xFF334155),
+          bodyColor: const Color(0xFF475569), // Slightly brighter
           displayColor: const Color(0xFF0F172A),
         ),
         colorScheme: const ColorScheme.light(
-          primary: Color(0xFF0EA5E9), // Blue
-          secondary: Color(0xFF0EA5E9),
+          primary: Color(0xFF0891E5), // More vibrant blue
+          secondary: Color(0xFF0891E5),
           surface: Colors.white,
         ),
         useMaterial3: true,
@@ -958,11 +959,7 @@ class _CVHomePageState extends State<CVHomePage> {
     final isDark = theme.brightness == Brightness.dark;
 
     // Determine grid column count based on screen size
-    int getColumnCount() {
-      if (isMobile) return 1;
-      if (isTablet) return 2;
-      return 3;
-    }
+    // Removed unused getColumnCount()
 
     return Container(
       padding: _getResponsivePadding(context).copyWith(
@@ -999,28 +996,22 @@ class _CVHomePageState extends State<CVHomePage> {
                 ),
               ),
               const SizedBox(height: 40),
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  final columnCount = getColumnCount();
-                  final spacing = isMobile ? 15.0 : 20.0;
-                  final itemWidth = (constraints.maxWidth - (spacing * (columnCount - 1))) / columnCount;
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: skills.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final skillGroup = entry.value;
 
-                  return Wrap(
-                    spacing: spacing,
-                    runSpacing: spacing,
-                    children: skills.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final skillGroup = entry.value;
-
-                      return AnimatedSkillCard(
-                        delay: Duration(milliseconds: 400 + (index * 100)),
-                        width: isMobile ? double.infinity : itemWidth,
-                        skillGroup: skillGroup,
-                        fontSize: _getResponsiveFontSize(context, 20),
-                      );
-                    }).toList(),
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: isMobile ? 30.0 : 40.0),
+                    child: AnimatedSkillCard(
+                      delay: Duration(milliseconds: 400 + (index * 100)),
+                      width: double.infinity,
+                      skillGroup: skillGroup,
+                      fontSize: _getResponsiveFontSize(context, 20),
+                    ),
                   );
-                },
+                }).toList(),
               ),
             ],
           ),
@@ -1075,7 +1066,6 @@ class _CVHomePageState extends State<CVHomePage> {
               ...companies.asMap().entries.map((entry) {
                 final index = entry.key;
                 final company = entry.value;
-
                 return AnimatedCompanyExperienceCard(
                   delay: Duration(milliseconds: 400 + (index * 100)),
                   company: company,
@@ -1592,74 +1582,189 @@ class AnimatedSkillCard extends StatefulWidget {
 }
 
 class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
-  bool _isHovered = false;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     return FadeInUpAnimation(
       delay: widget.delay,
-      child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          width: widget.width,
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: theme.scaffoldBackgroundColor,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color:
-                  _isHovered ? theme.colorScheme.primary : (isDark ? const Color(0xFF233554) : const Color(0xFFE2E8F0)),
-              width: 1,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.skillGroup.category,
+            style: GoogleFonts.roboto(
+              fontSize: widget.fontSize,
+              fontWeight: FontWeight.bold,
+              color: theme.textTheme.displayLarge?.color,
             ),
-            boxShadow: _isHovered
-                ? [
-                    BoxShadow(
-                      color: theme.colorScheme.primary.withOpacity(0.1),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ]
-                : [],
           ),
-          transform: Matrix4.translationValues(0.0, _isHovered ? -8.0 : 0.0, 0.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                widget.skillGroup.category,
-                style: GoogleFonts.roboto(
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.bold,
-                  color: theme.textTheme.displayLarge?.color,
+          const SizedBox(height: 16),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: widget.skillGroup.skills.map((skill) {
+              return _SkillPill(skill: skill, isDark: isDark);
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _SkillPill extends StatefulWidget {
+  final Skill skill;
+  final bool isDark;
+
+  const _SkillPill({
+    required this.skill,
+    required this.isDark,
+  });
+
+  @override
+  State<_SkillPill> createState() => _SkillPillState();
+}
+
+class _SkillPillState extends State<_SkillPill> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    // Color based on proficiency
+    Color dotColor;
+    Color dotGlowColor;
+    Color bgColor;
+    Color borderColor;
+    Color textColor;
+    String proficiencyText;
+
+    // Theme-appropriate backgrounds for skill pills
+    bgColor = widget.isDark ? const Color(0xFF181A20) : const Color(0xFFF8FAFC);
+    borderColor = widget.isDark ? const Color(0xFF00FFC8).withOpacity(0.25) : const Color(0xFF0891E5).withOpacity(0.35);
+    textColor = widget.isDark ? const Color(0xFFF1F5F9) : const Color(0xFF1E293B);
+
+    switch (widget.skill.proficiency) {
+      case SkillProficiency.expert:
+        dotColor = const Color(0xFF00E676); // More vibrant green
+        dotGlowColor = const Color(0xFF69F0AE); // Brighter green glow
+        proficiencyText = '80%+';
+        break;
+      case SkillProficiency.advanced:
+        dotColor = const Color(0xFFFF6D00); // More vibrant orange
+        dotGlowColor = const Color(0xFFFFAB40); // Brighter orange glow
+        proficiencyText = '60%';
+        break;
+      case SkillProficiency.intermediate:
+        dotColor = const Color(0xFF00E5FF); // More vibrant cyan
+        dotGlowColor = const Color(0xFF84FFFF); // Brighter cyan glow
+        proficiencyText = '40%';
+        break;
+      case SkillProficiency.beginner:
+        dotColor = const Color(0xFFFF4081); // More vibrant pink
+        dotGlowColor = const Color(0xFFFF80AB); // Brighter pink glow
+        proficiencyText = '20%';
+        break;
+    }
+
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        decoration: BoxDecoration(
+          color: _isHovered ? Color.lerp(bgColor, dotColor, 0.12) : bgColor,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: _isHovered ? dotColor.withOpacity(0.6) : borderColor,
+            width: _isHovered ? 1.5 : 1,
+          ),
+          boxShadow: _isHovered
+              ? [
+                  BoxShadow(
+                    color: dotGlowColor.withOpacity(0.6),
+                    blurRadius: 12,
+                    spreadRadius: 1,
+                    offset: const Offset(0, 0),
+                  ),
+                  BoxShadow(
+                    color: dotColor.withOpacity(0.4),
+                    blurRadius: 20,
+                    spreadRadius: 2,
+                    offset: const Offset(0, 4),
+                  ),
+                ]
+              : [
+                  BoxShadow(
+                    color: dotGlowColor.withOpacity(0.15),
+                    blurRadius: 6,
+                    spreadRadius: 0,
+                  ),
+                ],
+        ),
+        transform: Matrix4.translationValues(0.0, _isHovered ? -2.0 : 0.0, 0.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: _isHovered ? 10 : 7,
+              height: _isHovered ? 10 : 7,
+              decoration: BoxDecoration(
+                color: dotColor,
+                shape: BoxShape.circle,
+                boxShadow: _isHovered
+                    ? [
+                        BoxShadow(
+                          color: dotGlowColor.withOpacity(0.9),
+                          blurRadius: 16,
+                          spreadRadius: 2,
+                        ),
+                        BoxShadow(
+                          color: dotColor.withOpacity(0.8),
+                          blurRadius: 8,
+                          spreadRadius: 0,
+                        ),
+                      ]
+                    : [
+                        BoxShadow(
+                          color: dotGlowColor.withOpacity(0.4),
+                          blurRadius: 6,
+                          spreadRadius: 1,
+                        ),
+                      ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              widget.skill.name,
+              style: GoogleFonts.inter(
+                color: _isHovered ? dotColor : textColor,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            if (_isHovered) ...[
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                decoration: BoxDecoration(
+                  color: dotColor.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  proficiencyText,
+                  style: GoogleFonts.inter(
+                    color: textColor,
+                    fontSize: 10,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
-              Wrap(
-                spacing: 8,
-                runSpacing: 8,
-                children: widget.skillGroup.skills.map((skill) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: isDark ? const Color(0xFF233554) : const Color(0xFFE0F2FE),
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      skill.name,
-                      style: GoogleFonts.firaCode(
-                        color: theme.colorScheme.primary,
-                        fontSize: 13,
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
             ],
-          ),
+          ],
         ),
       ),
     );
@@ -1716,9 +1821,16 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
             boxShadow: _isHovered
                 ? [
                     BoxShadow(
-                      color: theme.colorScheme.primary.withOpacity(0.1),
-                      blurRadius: 20,
+                      color: theme.colorScheme.primary.withOpacity(0.3),
+                      blurRadius: 30,
+                      spreadRadius: 2,
                       offset: const Offset(0, 10),
+                    ),
+                    BoxShadow(
+                      color: theme.colorScheme.primary.withOpacity(0.15),
+                      blurRadius: 40,
+                      spreadRadius: 0,
+                      offset: const Offset(0, 15),
                     ),
                   ]
                 : [],
@@ -1814,115 +1926,52 @@ class _AnimatedCompanyExperienceCardState extends State<AnimatedCompanyExperienc
               ...widget.company.experiences.asMap().entries.map((entry) {
                 final index = entry.key;
                 final exp = entry.value;
-                final isFirst = index == 0;
-                final hasMultipleExperiences = widget.company.experiences.length > 1;
-                final isLast = index == widget.company.experiences.length - 1;
+                // Removed unused isFirst, hasMultipleExperiences, isLast
 
-                return IntrinsicHeight(
-                  child: Row(
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 24.0),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Timeline Line and Dot
-                      if (hasMultipleExperiences)
-                        SizedBox(
-                          width: widget.isMobile ? 32 : 40,
-                          child: Column(
-                            children: [
-                              Container(
-                                width: 12,
-                                height: 12,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: isFirst
-                                      ? theme.colorScheme.primary
-                                      : (isDark ? const Color(0xFF233554) : const Color(0xFFE2E8F0)),
-                                  border: Border.all(color: theme.colorScheme.primary, width: 2),
-                                ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              exp.title,
+                              style: GoogleFonts.roboto(
+                                fontSize: widget.titleFontSize * 0.9,
+                                fontWeight: FontWeight.bold,
+                                color: theme.colorScheme.primary,
                               ),
-                              if (!isLast)
-                                Expanded(
-                                  child: Container(
-                                    width: 2,
-                                    color: isDark ? const Color(0xFF233554) : const Color(0xFFE2E8F0),
-                                  ),
-                                ),
-                            ],
+                            ),
                           ),
+                          Text(
+                            exp.dateRange.forResume,
+                            style: GoogleFonts.roboto(
+                              fontSize: widget.textFontSize * 0.9,
+                              color: theme.textTheme.bodyMedium?.color,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        '${exp.location} · ${exp.employmentType}',
+                        style: GoogleFonts.roboto(
+                          fontSize: widget.textFontSize * 0.85,
+                          color: theme.textTheme.bodyMedium?.color,
+                          fontStyle: FontStyle.italic,
                         ),
-                      const SizedBox(width: 8),
-                      // Role Details
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: isLast ? 0 : 32.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              widget.isMobile
-                                  ? Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          exp.title,
-                                          style: GoogleFonts.roboto(
-                                            fontSize: widget.titleFontSize * 0.9,
-                                            fontWeight: FontWeight.bold,
-                                            color: theme.colorScheme.primary,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 4),
-                                        Text(
-                                          exp.dateRange.forResume,
-                                          style: GoogleFonts.roboto(
-                                            fontSize: widget.textFontSize * 0.9,
-                                            color: theme.textTheme.bodyMedium?.color,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            exp.title,
-                                            style: GoogleFonts.roboto(
-                                              fontSize: widget.titleFontSize * 0.9,
-                                              fontWeight: FontWeight.bold,
-                                              color: theme.colorScheme.primary,
-                                            ),
-                                          ),
-                                        ),
-                                        Text(
-                                          exp.dateRange.forResume,
-                                          style: GoogleFonts.roboto(
-                                            fontSize: widget.textFontSize * 0.9,
-                                            color: theme.textTheme.bodyMedium?.color,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                              const SizedBox(height: 4),
-                              Text(
-                                '${exp.location} · ${exp.employmentType}',
-                                style: GoogleFonts.roboto(
-                                  fontSize: widget.textFontSize * 0.85,
-                                  color: theme.textTheme.bodyMedium?.color,
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                exp.description,
-                                style: GoogleFonts.roboto(
-                                  fontSize: widget.textFontSize,
-                                  height: 1.6,
-                                  color: theme.textTheme.bodyMedium?.color,
-                                ),
-                              ),
-                            ],
-                          ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        exp.description,
+                        style: GoogleFonts.roboto(
+                          fontSize: widget.textFontSize,
+                          height: 1.6,
+                          color: theme.textTheme.bodyMedium?.color,
                         ),
                       ),
                     ],
@@ -1990,9 +2039,16 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
               boxShadow: _isHovered
                   ? [
                       BoxShadow(
-                        color: theme.colorScheme.primary.withOpacity(0.1),
-                        blurRadius: 20,
+                        color: theme.colorScheme.primary.withOpacity(0.3),
+                        blurRadius: 30,
+                        spreadRadius: 2,
                         offset: const Offset(0, 10),
+                      ),
+                      BoxShadow(
+                        color: theme.colorScheme.primary.withOpacity(0.15),
+                        blurRadius: 40,
+                        spreadRadius: 0,
+                        offset: const Offset(0, 15),
                       ),
                     ]
                   : [],
@@ -2103,19 +2159,25 @@ class _AnimatedGradientBorderState extends State<_AnimatedGradientBorder> with S
               shape: BoxShape.circle,
               gradient: SweepGradient(
                 colors: const [
-                  Color(0xFF64FFDA),
-                  Color(0xFF5A9FFF),
-                  Color(0xFF8B5CF6),
-                  Color(0xFF64FFDA),
+                  Color(0xFF00FFC8), // Vibrant teal
+                  Color(0xFF00E5FF), // Vibrant cyan
+                  Color(0xFF7C4DFF), // Vibrant purple
+                  Color(0xFFFF4081), // Vibrant pink
+                  Color(0xFF00FFC8), // Back to teal
                 ],
-                stops: const [0.0, 0.33, 0.66, 1.0],
+                stops: const [0.0, 0.25, 0.5, 0.75, 1.0],
                 transform: GradientRotation(_controller.value * 6.28),
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF64FFDA).withOpacity(0.5),
-                  blurRadius: 40,
-                  spreadRadius: 5,
+                  color: const Color(0xFF00FFC8).withOpacity(0.7),
+                  blurRadius: 50,
+                  spreadRadius: 8,
+                ),
+                BoxShadow(
+                  color: const Color(0xFF7C4DFF).withOpacity(0.5),
+                  blurRadius: 35,
+                  spreadRadius: 4,
                 ),
               ],
             ),
@@ -2416,8 +2478,13 @@ class _AnimatedSocialIconState extends State<_AnimatedSocialIcon> {
                 boxShadow: _isHovered
                     ? [
                         BoxShadow(
+                          color: theme.colorScheme.primary.withOpacity(0.7),
+                          blurRadius: 20,
+                          spreadRadius: 4,
+                        ),
+                        BoxShadow(
                           color: theme.colorScheme.primary.withOpacity(0.4),
-                          blurRadius: 12,
+                          blurRadius: 30,
                           spreadRadius: 2,
                         ),
                       ]

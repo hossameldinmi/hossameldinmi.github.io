@@ -3,175 +3,159 @@ import 'package:cv_website/src/models/skill_section.dart';
 
 class Skills {
   // Mobile Development
-  static final flutter = Skill(name: 'Flutter');
-  static final ios = Skill(name: 'iOS Development');
-  static final crossPlatform = Skill(name: 'Cross-Platform Development');
-  static final performanceOptimization = Skill(name: 'Performance Optimization');
-  static final xamarin = Skill(name: 'Xamarin');
-  static final xamarinForms = Skill(name: 'Xamarin.Forms');
-  static final mobileDevelopment = Skill(name: 'Mobile Development');
-  static final appProfiling = Skill(name: 'App Performance Profiling');
-  static final lifecycleManagement = Skill(name: 'Mobile App Lifecycle Management');
+  static final flutter = Skill(name: 'Flutter', proficiency: SkillProficiency.expert);
+  static final ios = Skill(name: 'iOS Development', proficiency: SkillProficiency.beginner);
+  static final crossPlatform = Skill(name: 'Cross-Platform Development', proficiency: SkillProficiency.expert);
+  static final performanceOptimization =
+      Skill(name: 'Performance Optimization', proficiency: SkillProficiency.advanced);
+  static final xamarin = Skill(name: 'Xamarin', proficiency: SkillProficiency.advanced);
+  static final xamarinForms = Skill(name: 'Xamarin.Forms', proficiency: SkillProficiency.advanced);
+  static final mobileDevelopment = Skill(name: 'Mobile Development', proficiency: SkillProficiency.expert);
+  static final appProfiling = Skill(name: 'App Performance Profiling', proficiency: SkillProficiency.intermediate);
+  static final lifecycleManagement =
+      Skill(name: 'Mobile App Lifecycle Management', proficiency: SkillProficiency.advanced);
 
   // Programming Languages
-  static final swift = Skill(name: 'Swift');
-  static final dart = Skill(name: 'Dart');
-  static final cSharp = Skill(name: 'C#');
-  static final dotNet = Skill(name: '.NET Framework');
-  static final java = Skill(name: 'Java');
+  static final swift = Skill(name: 'Swift', proficiency: SkillProficiency.advanced);
+  static final dart = Skill(name: 'Dart', proficiency: SkillProficiency.expert);
+  static final cSharp = Skill(name: 'C#', proficiency: SkillProficiency.advanced);
+  static final dotNet = Skill(name: '.NET Framework', proficiency: SkillProficiency.advanced);
+  static final java = Skill(name: 'Java', proficiency: SkillProficiency.intermediate);
 
   // SDK & Integration
-  static final sdkDevelopment = Skill(name: 'SDK Development');
-  static final nativeBridges = Skill(name: 'Native Bridges');
-  static final platformChannels = Skill(name: 'Platform Channels');
-  static final apiIntegration = Skill(name: 'API Integration');
-  static final thirdPartySdks = Skill(name: 'Third-party SDKs');
-  static final pluginDevelopment = Skill(name: 'Plugin Development');
-  static final openSourceDev = Skill(name: 'Open-Source Development');
+  static final sdkDevelopment = Skill(name: 'SDK Development', proficiency: SkillProficiency.expert);
+  static final nativeBridges = Skill(name: 'Native Bridges', proficiency: SkillProficiency.expert);
+  static final platformChannels = Skill(name: 'Platform Channels', proficiency: SkillProficiency.expert);
+  static final apiIntegration = Skill(name: 'API Integration', proficiency: SkillProficiency.expert);
+  static final thirdPartySdks = Skill(name: 'Third-party SDKs', proficiency: SkillProficiency.advanced);
+  static final pluginDevelopment = Skill(name: 'Plugin Development', proficiency: SkillProficiency.expert);
+  static final openSourceDev = Skill(name: 'Open-Source Development', proficiency: SkillProficiency.expert);
 
   // Tools & Technologies
-  static final git = Skill(name: 'Git');
-  static final github = Skill(name: 'GitHub');
-  static final firebase = Skill(name: 'Firebase');
-  static final restApis = Skill(name: 'REST APIs');
-  static final graphQL = Skill(name: 'GraphQL');
-  static final ciCd = Skill(name: 'CI/CD');
-  static final xcode = Skill(name: 'Xcode');
-  static final androidStudio = Skill(name: 'Android Studio');
-  static final vscode = Skill(name: 'VS Code');
-  static final azureDevOps = Skill(name: 'Azure DevOps');
-  static final jwt = Skill(name: 'JWT');
-  static final linq = Skill(name: 'LINQ');
-  static final aiTools = Skill(name: 'AI Tools (Copilot, Cursor, Windsurf)');
+  static final git = Skill(name: 'Git', proficiency: SkillProficiency.expert);
+  static final github = Skill(name: 'GitHub', proficiency: SkillProficiency.expert);
+  static final firebase = Skill(name: 'Firebase', proficiency: SkillProficiency.advanced);
+  static final restApis = Skill(name: 'REST APIs', proficiency: SkillProficiency.expert);
+  static final graphQL = Skill(name: 'GraphQL', proficiency: SkillProficiency.intermediate);
+  static final ciCd = Skill(name: 'CI/CD', proficiency: SkillProficiency.advanced);
+  static final xcode = Skill(name: 'Xcode', proficiency: SkillProficiency.advanced);
+  static final androidStudio = Skill(name: 'Android Studio', proficiency: SkillProficiency.intermediate);
+  static final vscode = Skill(name: 'VS Code', proficiency: SkillProficiency.expert);
+  static final azureDevOps = Skill(name: 'Azure DevOps', proficiency: SkillProficiency.intermediate);
+  static final jwt = Skill(name: 'JWT', proficiency: SkillProficiency.advanced);
+  static final linq = Skill(name: 'LINQ', proficiency: SkillProficiency.advanced);
+  static final aiTools = Skill(name: 'AI Tools (Copilot, Cursor, Windsurf)', proficiency: SkillProficiency.expert);
 
   // Architecture & Patterns
-  static final cleanArchitecture = Skill(name: 'Clean Architecture');
-  static final domainDrivenDesign = Skill(name: 'Domain-Driven Design');
-  static final mvvm = Skill(name: 'MVVM');
-  static final bloc = Skill(name: 'BLoC');
-  static final provider = Skill(name: 'Provider');
-  static final riverpod = Skill(name: 'Riverpod');
-  static final getX = Skill(name: 'GetX');
-  static final mvc = Skill(name: 'MVC');
-  static final oop = Skill(name: 'Object-Oriented Programming');
-  static final oodDesign = Skill(name: 'Object-Oriented Design');
-  static final reactiveArchitecture = Skill(name: 'Reactive Architecture');
-  static final uml = Skill(name: 'UML');
+  static final cleanArchitecture = Skill(name: 'Clean Architecture', proficiency: SkillProficiency.expert);
+  static final domainDrivenDesign = Skill(name: 'Domain-Driven Design', proficiency: SkillProficiency.advanced);
+  static final mvvm = Skill(name: 'MVVM', proficiency: SkillProficiency.expert);
+  static final bloc = Skill(name: 'BLoC', proficiency: SkillProficiency.expert);
+  static final provider = Skill(name: 'Provider', proficiency: SkillProficiency.expert);
+  static final riverpod = Skill(name: 'Riverpod', proficiency: SkillProficiency.advanced);
+  static final getX = Skill(name: 'GetX', proficiency: SkillProficiency.advanced);
+  static final mvc = Skill(name: 'MVC', proficiency: SkillProficiency.expert);
+  static final oop = Skill(name: 'Object-Oriented Programming', proficiency: SkillProficiency.expert);
+  static final oodDesign = Skill(name: 'Object-Oriented Design', proficiency: SkillProficiency.expert);
+  static final reactiveArchitecture = Skill(name: 'Reactive Architecture', proficiency: SkillProficiency.advanced);
+  static final uml = Skill(name: 'UML', proficiency: SkillProficiency.intermediate);
 
   // Software Engineering Practices
-  static final tdd = Skill(name: 'Test Driven Development');
-  static final debugging = Skill(name: 'Debugging & Issue Tracking');
-  static final codeReview = Skill(name: 'Code Review & Quality Assurance');
-  static final refactoring = Skill(name: 'Refactoring Legacy Systems');
-  static final technicalDebt = Skill(name: 'Managing Technical Debt');
-  static final sdlc = Skill(name: 'Software Development Life Cycle');
-  static final technicalDocumentation = Skill(name: 'Technical Documentation Writing');
+  static final tdd = Skill(name: 'Test Driven Development', proficiency: SkillProficiency.advanced);
+  static final debugging = Skill(name: 'Debugging & Issue Tracking', proficiency: SkillProficiency.expert);
+  static final codeReview = Skill(name: 'Code Review & Quality Assurance', proficiency: SkillProficiency.expert);
+  static final refactoring = Skill(name: 'Refactoring Legacy Systems', proficiency: SkillProficiency.advanced);
+  static final technicalDebt = Skill(name: 'Managing Technical Debt', proficiency: SkillProficiency.advanced);
+  static final sdlc = Skill(name: 'Software Development Life Cycle', proficiency: SkillProficiency.expert);
+  static final technicalDocumentation =
+      Skill(name: 'Technical Documentation Writing', proficiency: SkillProficiency.advanced);
 
   // Soft Skills
-  static final openSourceContribution = Skill(name: 'Open Source Contribution');
-  static final technicalLeadership = Skill(name: 'Technical Leadership');
-  static final mentoring = Skill(name: 'Mentoring');
-  static final problemSolving = Skill(name: 'Problem Solving');
-  static final agileScrum = Skill(name: 'Agile Software Development');
-  static final teamCollaboration = Skill(name: 'Team Collaboration');
-  static final selfMotivation = Skill(name: 'Self-Motivation');
-  static final featurePlanning = Skill(name: 'Feature Planning & Sprint Execution');
+  static final openSourceContribution = Skill(name: 'Open Source Contribution', proficiency: SkillProficiency.expert);
+  static final technicalLeadership = Skill(name: 'Technical Leadership', proficiency: SkillProficiency.expert);
+  static final mentoring = Skill(name: 'Mentoring', proficiency: SkillProficiency.advanced);
+  static final problemSolving = Skill(name: 'Problem Solving', proficiency: SkillProficiency.expert);
+  static final agileScrum = Skill(name: 'Agile Software Development', proficiency: SkillProficiency.expert);
+  static final teamCollaboration = Skill(name: 'Team Collaboration', proficiency: SkillProficiency.expert);
+  static final selfMotivation = Skill(name: 'Self-Motivation', proficiency: SkillProficiency.expert);
+  static final featurePlanning =
+      Skill(name: 'Feature Planning & Sprint Execution', proficiency: SkillProficiency.expert);
 
   static final sections = [
     SkillSection(
-      category: 'Mobile Development',
+      category: 'Technical Skills',
       skills: [
+        // Expert Level
         flutter,
-        ios,
         crossPlatform,
-        xamarin,
-        xamarinForms,
         mobileDevelopment,
-        appProfiling,
-        performanceOptimization,
-        lifecycleManagement,
-      ],
-    ),
-    SkillSection(
-      category: 'Programming Languages',
-      skills: [
         dart,
-        swift,
-        cSharp,
-        dotNet,
-        java,
-      ],
-    ),
-    SkillSection(
-      category: 'SDK & Integration',
-      skills: [
         sdkDevelopment,
         nativeBridges,
         platformChannels,
         apiIntegration,
-        thirdPartySdks,
         pluginDevelopment,
         openSourceDev,
-      ],
-    ),
-    SkillSection(
-      category: 'Tools & Technologies',
-      skills: [
         git,
         github,
-        firebase,
         restApis,
-        graphQL,
-        jwt,
-        linq,
-        ciCd,
-        xcode,
-        androidStudio,
         vscode,
-        azureDevOps,
         aiTools,
-      ],
-    ),
-    SkillSection(
-      category: 'Architecture & Design Patterns',
-      skills: [
         cleanArchitecture,
-        domainDrivenDesign,
         oop,
         oodDesign,
         mvvm,
         mvc,
         bloc,
         provider,
+        debugging,
+        codeReview,
+        sdlc,
+        // Advanced Level
+        ios,
+        xamarin,
+        xamarinForms,
+        performanceOptimization,
+        lifecycleManagement,
+        swift,
+        cSharp,
+        dotNet,
+        thirdPartySdks,
+        firebase,
+        jwt,
+        linq,
+        ciCd,
+        xcode,
+        domainDrivenDesign,
         riverpod,
         getX,
         reactiveArchitecture,
+        tdd,
+        refactoring,
+        technicalDebt,
+        technicalDocumentation,
+        // Intermediate Level
+        appProfiling,
+        java,
+        graphQL,
+        androidStudio,
+        azureDevOps,
         uml,
       ],
     ),
     SkillSection(
-      category: 'Software Engineering Practices',
+      category: 'Soft Skills',
       skills: [
-        tdd,
-        debugging,
-        codeReview,
-        refactoring,
-        technicalDebt,
-        sdlc,
-        technicalDocumentation,
-      ],
-    ),
-    SkillSection(
-      category: 'Soft Skills & Leadership',
-      skills: [
+        // Expert Level
         technicalLeadership,
-        mentoring,
         agileScrum,
         featurePlanning,
         problemSolving,
         openSourceContribution,
         teamCollaboration,
         selfMotivation,
+        // Advanced Level
+        mentoring,
       ],
     ),
   ];
