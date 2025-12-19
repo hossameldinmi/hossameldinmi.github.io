@@ -15,6 +15,7 @@ class LinkedInProfile {
   final String title;
   final String subtitle;
   final List<String> focusList;
+  final String? calendlyId;
   final String about;
   final MediaSource<ImageType> profilePicture;
   final String location;
@@ -45,6 +46,7 @@ class LinkedInProfile {
     required this.languages,
     required this.contact,
     required this.blogs,
+    this.calendlyId,
     this.resume,
   });
 }
