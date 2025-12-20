@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:media_source/media_source.dart';
 import '../../../models/project.dart';
+import '../../../models/media.dart';
 import 'fade_in_up_animation.dart';
 
 class AnimatedProjectCard extends StatefulWidget {
@@ -27,6 +30,32 @@ class AnimatedProjectCard extends StatefulWidget {
 
 class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
   bool _isHovered = false;
+
+  IconData _getMediaIcon(Media media) {
+    if (media.media is! UrlMedia) return FontAwesomeIcons.link;
+
+    final url = (media.media as UrlMedia).uri.toString().toLowerCase();
+
+    if (url.contains('play.google.com')) return FontAwesomeIcons.googlePlay;
+    if (url.contains('apps.apple.com')) return FontAwesomeIcons.appStore;
+    if (url.contains('appgallery.huawei.com')) return FontAwesomeIcons.mobile;
+    if (url.contains('pub.dev')) return FontAwesomeIcons.cube;
+    if (url.contains('github.com')) return FontAwesomeIcons.github;
+    return FontAwesomeIcons.link;
+  }
+
+  String _getMediaTooltip(Media media) {
+    if (media.media is! UrlMedia) return media.title;
+
+    final url = (media.media as UrlMedia).uri.toString().toLowerCase();
+
+    if (url.contains('play.google.com')) return 'Google Play Store';
+    if (url.contains('apps.apple.com')) return 'Apple App Store';
+    if (url.contains('appgallery.huawei.com')) return 'Huawei AppGallery';
+    if (url.contains('pub.dev')) return 'pub.dev Package';
+    if (url.contains('github.com')) return 'GitHub Repository';
+    return media.title;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +129,23 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                     color: theme.textTheme.displayLarge?.color,
                   ),
                 ),
+                const SizedBox(height: 12),
+                // Platform/Source Icons
+                if (widget.project.media.isNotEmpty)
+                  Wrap(
+                    spacing: 12,
+                    runSpacing: 8,
+                    children: widget.project.media.map((media) {
+                      return Tooltip(
+                        message: _getMediaTooltip(media),
+                        child: Icon(
+                          _getMediaIcon(media),
+                          size: 18,
+                          color: theme.textTheme.bodyMedium?.color?.withOpacity(0.7),
+                        ),
+                      );
+                    }).toList(),
+                  ),
                 const SizedBox(height: 16),
                 Text(
                   widget.project.description,
@@ -110,20 +156,6 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                   ),
                   maxLines: 4,
                   overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 20),
-                Wrap(
-                  spacing: 12,
-                  runSpacing: 8,
-                  children: widget.project.skills.take(5).map((s) {
-                    return Text(
-                      s.name,
-                      style: GoogleFonts.firaCode(
-                        fontSize: 13,
-                        color: theme.textTheme.bodyMedium?.color,
-                      ),
-                    );
-                  }).toList(),
                 ),
               ],
             ),

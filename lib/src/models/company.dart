@@ -8,12 +8,16 @@ class Company {
   final MediaSource<ImageType>? logo;
   final List<Experience> experiences;
 
-  const Company({
+  Company({
     required this.name,
     required this.location,
     this.logo,
     required this.experiences,
-  });
+  }) {
+    experiences.forEach((experience) {
+      experience.addCompany(this);
+    });
+  }
 
   DateRange get dateRange {
     if (experiences.isEmpty) {
