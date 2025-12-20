@@ -23,6 +23,14 @@ class AnimatedSkillCard extends StatefulWidget {
 }
 
 class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
+  Skill? _selectedSkill;
+
+  void _onSkillTap(Skill skill) {
+    setState(() {
+      _selectedSkill = _selectedSkill == skill ? null : skill;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -45,7 +53,12 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
             spacing: 8,
             runSpacing: 8,
             children: widget.skillGroup.skills.map((skill) {
-              return SkillPill(skill: skill, isDark: isDark);
+              return SkillPill(
+                skill: skill,
+                isDark: isDark,
+                isSelected: _selectedSkill == skill,
+                onTap: () => _onSkillTap(skill),
+              );
             }).toList(),
           ),
         ],
@@ -57,11 +70,15 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard> {
 class SkillPill extends StatefulWidget {
   final Skill skill;
   final bool isDark;
+  final bool isSelected;
+  final VoidCallback onTap;
 
   const SkillPill({
     super.key,
     required this.skill,
     required this.isDark,
+    required this.isSelected,
+    required this.onTap,
   });
 
   @override
@@ -70,6 +87,8 @@ class SkillPill extends StatefulWidget {
 
 class _SkillPillState extends State<SkillPill> {
   bool _isHovered = false;
+
+  bool get _isActive => _isHovered || widget.isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -109,104 +128,107 @@ class _SkillPillState extends State<SkillPill> {
         break;
     }
 
-    return MouseRegion(
-      onEnter: (_) => setState(() => _isHovered = true),
-      onExit: (_) => setState(() => _isHovered = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        curve: Curves.easeInOut,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        decoration: BoxDecoration(
-          color: _isHovered ? Color.lerp(bgColor, dotColor, 0.12) : bgColor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: _isHovered ? dotColor.withOpacity(0.6) : borderColor,
-            width: _isHovered ? 1.5 : 1,
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: MouseRegion(
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: _isActive ? Color.lerp(bgColor, dotColor, 0.12) : bgColor,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: _isActive ? dotColor.withOpacity(0.6) : borderColor,
+              width: _isActive ? 1.5 : 1,
+            ),
+            boxShadow: _isActive
+                ? [
+                    BoxShadow(
+                      color: dotGlowColor.withOpacity(0.6),
+                      blurRadius: 12,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 0),
+                    ),
+                    BoxShadow(
+                      color: dotColor.withOpacity(0.4),
+                      blurRadius: 20,
+                      spreadRadius: 2,
+                      offset: const Offset(0, 4),
+                    ),
+                  ]
+                : [
+                    BoxShadow(
+                      color: dotGlowColor.withOpacity(0.15),
+                      blurRadius: 6,
+                      spreadRadius: 0,
+                    ),
+                  ],
           ),
-          boxShadow: _isHovered
-              ? [
-                  BoxShadow(
-                    color: dotGlowColor.withOpacity(0.6),
-                    blurRadius: 12,
-                    spreadRadius: 1,
-                    offset: const Offset(0, 0),
-                  ),
-                  BoxShadow(
-                    color: dotColor.withOpacity(0.4),
-                    blurRadius: 20,
-                    spreadRadius: 2,
-                    offset: const Offset(0, 4),
-                  ),
-                ]
-              : [
-                  BoxShadow(
-                    color: dotGlowColor.withOpacity(0.15),
-                    blurRadius: 6,
-                    spreadRadius: 0,
-                  ),
-                ],
-        ),
-        transform: Matrix4.translationValues(0.0, _isHovered ? -2.0 : 0.0, 0.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: _isHovered ? 10 : 7,
-              height: _isHovered ? 10 : 7,
-              decoration: BoxDecoration(
-                color: dotColor,
-                shape: BoxShape.circle,
-                boxShadow: _isHovered
-                    ? [
-                        BoxShadow(
-                          color: dotGlowColor.withOpacity(0.9),
-                          blurRadius: 16,
-                          spreadRadius: 2,
-                        ),
-                        BoxShadow(
-                          color: dotColor.withOpacity(0.8),
-                          blurRadius: 8,
-                          spreadRadius: 0,
-                        ),
-                      ]
-                    : [
-                        BoxShadow(
-                          color: dotGlowColor.withOpacity(0.4),
-                          blurRadius: 6,
-                          spreadRadius: 1,
-                        ),
-                      ],
-              ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              widget.skill.name,
-              style: GoogleFonts.inter(
-                color: _isHovered ? dotColor : textColor,
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            if (_isHovered) ...[
-              const SizedBox(width: 8),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+          transform: Matrix4.translationValues(0.0, _isActive ? -2.0 : 0.0, 0.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                width: _isActive ? 10 : 7,
+                height: _isActive ? 10 : 7,
                 decoration: BoxDecoration(
-                  color: dotColor.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  proficiencyText,
-                  style: GoogleFonts.inter(
-                    color: textColor,
-                    fontSize: 10,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  color: dotColor,
+                  shape: BoxShape.circle,
+                  boxShadow: _isActive
+                      ? [
+                          BoxShadow(
+                            color: dotGlowColor.withOpacity(0.9),
+                            blurRadius: 16,
+                            spreadRadius: 2,
+                          ),
+                          BoxShadow(
+                            color: dotColor.withOpacity(0.8),
+                            blurRadius: 8,
+                            spreadRadius: 0,
+                          ),
+                        ]
+                      : [
+                          BoxShadow(
+                            color: dotGlowColor.withOpacity(0.4),
+                            blurRadius: 6,
+                            spreadRadius: 1,
+                          ),
+                        ],
                 ),
               ),
+              const SizedBox(width: 8),
+              Text(
+                widget.skill.name,
+                style: GoogleFonts.inter(
+                  color: _isActive ? dotColor : textColor,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              if (_isActive) ...[
+                const SizedBox(width: 8),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: dotColor.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Text(
+                    proficiencyText,
+                    style: GoogleFonts.inter(
+                      color: textColor,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );
