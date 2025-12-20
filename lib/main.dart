@@ -4,8 +4,6 @@ import 'package:cv_website/src/models/skill_section.dart';
 import 'package:cv_website/src/models/company.dart';
 import 'package:cv_website/src/models/project.dart';
 import 'package:cv_website/src/models/media.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:media_source/media_source.dart';
 import 'package:flutter/material.dart';
@@ -123,6 +121,13 @@ class _CVHomePageState extends State<CVHomePage> {
   static final GlobalKey projectsKey = GlobalKey();
   static final GlobalKey contactKey = GlobalKey();
 
+  // Additional keys for lazy loading
+  static final GlobalKey summaryKey = GlobalKey();
+  static final GlobalKey skillsKey = GlobalKey();
+  static final GlobalKey blogsKey = GlobalKey();
+  static final GlobalKey calendlyKey = GlobalKey();
+  static final GlobalKey footerKey = GlobalKey();
+
   // Section configuration
   static final List<Map<String, dynamic>> _sections = [
     {'title': 'About', 'key': aboutKey},
@@ -133,11 +138,19 @@ class _CVHomePageState extends State<CVHomePage> {
 
   final ScrollController _scrollController = ScrollController();
   String _activeSection = 'About';
+  final Set<String> _loadedSections = {'header'}; // Start with header loaded
+  static const double _loadThreshold = 300.0; // Load sections 300px before they enter viewport
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
+    // Trigger initial load check after first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        _onScroll();
+      }
+    });
   }
 
   @override
@@ -150,8 +163,10 @@ class _CVHomePageState extends State<CVHomePage> {
   void _onScroll() {
     final scrollPosition = _scrollController.position.pixels;
     final screenHeight = MediaQuery.sizeOf(context).height;
+    final viewportEnd = scrollPosition + screenHeight;
 
     String newActiveSection = _sections.first['title'];
+    bool shouldUpdate = false;
 
     // Check sections in reverse order (bottom to top) to find the active one
     for (var i = _sections.length - 1; i >= 0; i--) {
@@ -164,7 +179,33 @@ class _CVHomePageState extends State<CVHomePage> {
       }
     }
 
-    if (newActiveSection != _activeSection) {
+    // Lazy load sections that are approaching the viewport
+    final sectionsToCheck = [
+      {'name': 'summary', 'key': summaryKey},
+      {'name': 'skills', 'key': skillsKey},
+      {'name': 'experience', 'key': experienceKey},
+      {'name': 'projects', 'key': projectsKey},
+      {'name': 'blogs', 'key': blogsKey},
+      {'name': 'contact', 'key': contactKey},
+      {'name': 'calendly', 'key': calendlyKey},
+      {'name': 'footer', 'key': footerKey},
+    ];
+
+    for (final section in sectionsToCheck) {
+      final sectionName = section['name'] as String;
+      if (!_loadedSections.contains(sectionName)) {
+        final key = section['key'] as GlobalKey;
+        final position = _getSectionPosition(key);
+
+        // Load section if it's within threshold of viewport
+        if (position != null && position < viewportEnd + _loadThreshold) {
+          _loadedSections.add(sectionName);
+          shouldUpdate = true;
+        }
+      }
+    }
+
+    if (newActiveSection != _activeSection || shouldUpdate) {
       setState(() {
         _activeSection = newActiveSection;
       });
@@ -384,15 +425,33 @@ class _CVHomePageState extends State<CVHomePage> {
         child: Column(
           children: [
             _buildHeader(context),
-            _buildSummarySection(context),
-            _buildSkillsSection(context),
-            _buildExperienceSection(context),
-            _buildProjectsSection(context),
-            // _buildProjectsSection(context), // Removing duplicate
-            _buildBlogSection(context),
-            _buildContactsSection(context),
-            if (ResumeData.profile.calendlyId != null) _buildCalendlySection(context),
-            _buildFooter(context),
+            _loadedSections.contains('summary')
+                ? _buildSummarySection(context)
+                : _buildPlaceholder(context, 400, key: summaryKey),
+            _loadedSections.contains('skills')
+                ? _buildSkillsSection(context)
+                : _buildPlaceholder(context, 600, key: skillsKey),
+            _loadedSections.contains('experience')
+                ? _buildExperienceSection(context)
+                : _buildPlaceholder(context, 800, key: experienceKey),
+            _loadedSections.contains('projects')
+                ? _buildProjectsSection(context)
+                : _buildPlaceholder(context, 700, key: projectsKey),
+            _loadedSections.contains('blogs')
+                ? _buildBlogSection(context)
+                : (ResumeData.profile.blogs.isNotEmpty
+                    ? _buildPlaceholder(context, 600, key: blogsKey)
+                    : const SizedBox.shrink()),
+            _loadedSections.contains('contact')
+                ? _buildContactsSection(context)
+                : _buildPlaceholder(context, 500, key: contactKey),
+            if (ResumeData.profile.calendlyId != null)
+              _loadedSections.contains('calendly')
+                  ? _buildCalendlySection(context)
+                  : _buildPlaceholder(context, 800, key: calendlyKey),
+            _loadedSections.contains('footer')
+                ? _buildFooter(context)
+                : _buildPlaceholder(context, 200, key: footerKey),
           ],
         ),
       ),
@@ -1416,6 +1475,27 @@ class _CVHomePageState extends State<CVHomePage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildPlaceholder(BuildContext context, double height, {GlobalKey? key}) {
+    final theme = Theme.of(context);
+    return Container(
+      key: key,
+      height: height,
+      color: theme.scaffoldBackgroundColor,
+      child: Center(
+        child: SizedBox(
+          width: 40,
+          height: 40,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(
+              theme.colorScheme.primary.withOpacity(0.3),
+            ),
+          ),
+        ),
       ),
     );
   }
