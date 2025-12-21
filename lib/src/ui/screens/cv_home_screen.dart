@@ -856,7 +856,6 @@ class _CVHomePageState extends State<CVHomePage> {
                 stopPauseOnTap: false,
               ),
             ),
-            BlinkingCursor(fontSize: fontSize),
           ],
         ),
       ],

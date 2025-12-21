@@ -22,7 +22,7 @@ class ResumeData {
       'Flutter Specialist',
       'Cross-Platform Mobile Developer',
       'Enterprise Mobile Architecture Enthusiastic',
-      'Open-Source Enthusiast',
+      'Open-Source Contributor',
     ],
     calendlyId: kReleaseMode ? 'hossameldinmi' : null,
     about: '''
@@ -40,14 +40,14 @@ class ResumeData {
       name: 'photo.jpg',
       size: 484.86.kb,
     ),
-    location: 'Egypt',
+    location: 'Agouza, Giza, Egypt',
     resume:
         DocumentNetworkMedia.url('https://drive.google.com/file/d/1DxheH3eOao1tRIEwB1TWJQaDtm1SBOaj/view?usp=sharing'),
     contact: const Contact(
       email: 'hossameldinmi@gmail.com',
       linkedinUrl: 'https://linkedin.com/in/hossameldinmi',
       githubUrl: 'https://github.com/hossameldinmi',
-      websiteUrl: 'https://hossameldinmi.github.io', // Assuming
+      websiteUrl: 'https://hossameldinmi.github.io',
       phone: PhoneNumber(countryCode: '+20', number: '122 848 6542'),
     ),
     experience: Experiences.values,
