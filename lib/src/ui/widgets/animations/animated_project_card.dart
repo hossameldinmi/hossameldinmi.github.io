@@ -114,7 +114,7 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
                           width: 40,
                           height: 40,
                           color: Colors.white,
-                          child: widget.project.logo!.fold(
+                          child: widget.project.logo!.media.fold(
                             asset: (a) => Image(
                               image: AssetImage(a.assetPath),
                               width: 40,

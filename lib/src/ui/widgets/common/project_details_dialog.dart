@@ -97,7 +97,7 @@ class ProjectDetailsDialog extends StatelessWidget {
                         width: 32,
                         height: 32,
                         color: Colors.white,
-                        child: project.logo!.fold(
+                        child: project.logo!.media.fold(
                           asset: (a) => Image(
                             image: AssetImage(a.assetPath),
                             width: 32,

@@ -45,13 +45,13 @@ class Projects {
       description: 'Flutter package for advanced media handling and source management, '
           'providing seamless media integration capabilities. Supports multiple media formats '
           'and sources with efficient caching and loading mechanisms.',
+      logo: Media(
+        media:
+            ImageNetworkMedia.url('https://raw.githubusercontent.com/hossameldinmi/media_source/main/assets/icon.png'),
+        title: 'icon.png',
+        type: MediaType.image,
+      ),
       media: [
-        Media(
-          media: ImageNetworkMedia.url(
-              'https://raw.githubusercontent.com/hossameldinmi/media_source/main/assets/icon.png'),
-          title: 'icon.png',
-          type: MediaType.image,
-        ),
         Media(
           media: UrlMedia.url('https://pub.dev/packages/media_source'),
           title: 'pub.dev Package',
@@ -109,13 +109,13 @@ class Projects {
       description: 'Flutter SDK integration for the Tawakkalna government application, '
           'enabling secure identity verification and COVID-19 health status integration. '
           'Provides seamless integration with Saudi Arabia\'s official health platform.',
+      logo: Media(
+        media: ImageNetworkMedia.url(
+            'https://raw.githubusercontent.com/hossameldinmi/tawakkalna_sdk_flutter/main/doc/icon.png'),
+        title: 'icon.png',
+        type: MediaType.image,
+      ),
       media: [
-        Media(
-          media: ImageNetworkMedia.url(
-              'https://raw.githubusercontent.com/hossameldinmi/tawakkalna_sdk_flutter/main/doc/icon.png'),
-          title: 'icon.png',
-          type: MediaType.image,
-        ),
         Media(
           media: UrlMedia.url('https://pub.dev/packages/tawakkalna_sdk_flutter'),
           title: 'pub.dev Package',
@@ -144,13 +144,13 @@ class Projects {
       title: 'Time of Day - Dart/Flutter Package',
       description: 'A type-safe Dart package for representing and manipulating time of day values with '
           'microsecond precision, supporting AM/PM periods, time comparisons, and safe arithmetic operations.',
+      logo: Media(
+        media:
+            ImageNetworkMedia.url('https://raw.githubusercontent.com/hossameldinmi/time_of_day/main/assets/icon.png'),
+        title: 'icon.png',
+        type: MediaType.image,
+      ),
       media: [
-        Media(
-          media:
-              ImageNetworkMedia.url('https://raw.githubusercontent.com/hossameldinmi/time_of_day/main/assets/icon.png'),
-          title: 'icon.png',
-          type: MediaType.image,
-        ),
         Media(
           media: UrlMedia.url('https://pub.dev/packages/time_of_day'),
           title: 'pub.dev Package',
@@ -180,13 +180,12 @@ class Projects {
           'for human-readable display. Convert between bytes(B), kilobytes(KB), megabytes(MB), gigabytes(GB), '
           'and terabytes(TB) using constructors or convenient extension methods. Supports arithmetic operations, '
           'comparisons, and localization for a complete file size handling solution.',
+      logo: Media(
+        media: ImageNetworkMedia.url('https://raw.githubusercontent.com/hossameldinmi/file_sized/main/assets/icon.png'),
+        title: 'icon.png',
+        type: MediaType.image,
+      ),
       media: [
-        Media(
-          media:
-              ImageNetworkMedia.url('https://raw.githubusercontent.com/hossameldinmi/file_sized/main/assets/icon.png'),
-          title: 'icon.png',
-          type: MediaType.image,
-        ),
         Media(
           media: UrlMedia.url('https://pub.dev/packages/file_sized'),
           title: 'pub.dev Package',
@@ -532,17 +531,17 @@ class Projects {
       title: 'Portme',
       description: 'Digital portfolio and personal branding platform enabling professionals to showcase '
           'their work, skills, and achievements in a modern, interactive format.',
-      media: [
-        Media(
-          media: ImageAssetMedia(
-            assetPath: 'assets/logos/portme_logo.png',
-            mimeType: 'image/png',
-            name: 'portme_logo.png',
-            size: 3.86.kb,
-          ),
-          title: 'icon.png',
-          type: MediaType.image,
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/logos/portme_logo.png',
+          mimeType: 'image/png',
+          name: 'portme_logo.png',
+          size: 3.86.kb,
         ),
+        title: 'icon.png',
+        type: MediaType.image,
+      ),
+      media: [
         Media(
           media: UrlMedia.url('https://portme.app/'),
           title: 'Website',
