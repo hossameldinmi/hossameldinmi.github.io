@@ -71,7 +71,7 @@ class _ProjectsSectionState extends State<ProjectsSection> {
       case ProjectFilter.toptalAndela:
         return 'Toptal/Andela';
       case ProjectFilter.portme:
-        return 'PortMe';
+        return 'Portme';
       case ProjectFilter.facegraph:
         return 'FaceGraph';
       case ProjectFilter.eme:

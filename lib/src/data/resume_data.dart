@@ -41,7 +41,7 @@ class ResumeData {
     ),
     location: 'Agouza, Giza, Egypt',
     resume:
-        DocumentNetworkMedia.url('https://drive.google.com/file/d/1DxheH3eOao1tRIEwB1TWJQaDtm1SBOaj/view?usp=sharing'),
+        DocumentNetworkMedia.url('https://drive.google.com/file/d/1jmsBMDDT2RBrPtQPX-b0vkNfeaFfoyUn/view?usp=sharing'),
     contact: const Contact(
       email: 'hossameldinmi@gmail.com',
       linkedinUrl: 'https://linkedin.com/in/hossameldinmi',

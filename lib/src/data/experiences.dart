@@ -206,7 +206,7 @@ class Experiences {
   static final values = [
     Company(
       name: 'Toptal',
-      location: 'Delaware, United States',
+      location: 'San Francisco, California, United States',
       logo: ImageAssetMedia(
         assetPath: 'assets/logos/toptal_logo.png',
         mimeType: 'image/png',
@@ -228,7 +228,7 @@ class Experiences {
     ),
     Company(
       name: 'Andela',
-      location: 'Cairo, Egypt',
+      location: 'New York, United States',
       logo: ImageAssetMedia(
         assetPath: 'assets/logos/andela_logo.png',
         mimeType: 'image/png',
@@ -238,7 +238,7 @@ class Experiences {
       experiences: [andelaSenior],
     ),
     Company(
-      name: 'PortMe',
+      name: 'Portme',
       location: 'California, United States',
       logo: ImageAssetMedia(
         assetPath: 'assets/logos/portme_logo.png',
