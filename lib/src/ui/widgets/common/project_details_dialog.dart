@@ -82,6 +82,40 @@ class ProjectDetailsDialog extends StatelessWidget {
     }
   }
 
+  void _showFullImage(BuildContext context, Media logo) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.all(16),
+        child: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            InteractiveViewer(
+              minScale: 0.5,
+              maxScale: 4.0,
+              child: logo.media.fold(
+                asset: (a) => Image.asset(
+                  a.assetPath,
+                  fit: BoxFit.contain,
+                ),
+                network: (n) => Image.network(
+                  n.uri.toString(),
+                  fit: BoxFit.contain,
+                ),
+                orElse: () => const SizedBox(),
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.close, color: Colors.white, size: 30),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -125,29 +159,38 @@ class ProjectDetailsDialog extends StatelessWidget {
               child: Row(
                 children: [
                   if (project.logo != null)
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Container(
-                        width: 32,
-                        height: 32,
-                        color: Colors.white,
-                        child: project.logo!.media.fold(
-                          asset: (a) => Image(
-                            image: AssetImage(a.assetPath),
-                            width: 32,
-                            height: 32,
-                            fit: BoxFit.cover,
-                          ),
-                          network: (n) => Image.network(
-                            n.uri.toString(),
-                            width: 32,
-                            height: 32,
-                            fit: BoxFit.cover,
-                          ),
-                          orElse: () => Icon(
-                            Icons.image,
-                            color: theme.colorScheme.primary,
-                            size: 32,
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => _showFullImage(context, project.logo!),
+                        child: Tooltip(
+                          message: 'View full size',
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Container(
+                              width: 32,
+                              height: 32,
+                              color: Colors.white,
+                              child: project.logo!.media.fold(
+                                asset: (a) => Image(
+                                  image: AssetImage(a.assetPath),
+                                  width: 32,
+                                  height: 32,
+                                  fit: BoxFit.cover,
+                                ),
+                                network: (n) => Image.network(
+                                  n.uri.toString(),
+                                  width: 32,
+                                  height: 32,
+                                  fit: BoxFit.cover,
+                                ),
+                                orElse: () => Icon(
+                                  Icons.image,
+                                  color: theme.colorScheme.primary,
+                                  size: 32,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
