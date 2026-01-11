@@ -30,7 +30,6 @@ class Projects {
         Skills.dart,
         Skills.flutter,
         Skills.openSourceDev,
-        Skills.sdkDevelopment,
         Skills.ciCd,
         Skills.aiTools,
         Skills.github,
@@ -67,8 +66,8 @@ class Projects {
         Skills.dart,
         Skills.flutter,
         Skills.openSourceDev,
-        Skills.sdkDevelopment,
         Skills.ciCd,
+        Skills.aiTools,
         Skills.github,
       ],
       experiences: [
@@ -97,6 +96,7 @@ class Projects {
         Skills.flutter,
         Skills.openSourceDev,
         Skills.ciCd,
+        Skills.aiTools,
         Skills.github,
       ],
       experiences: [
@@ -131,14 +131,12 @@ class Projects {
         Skills.dart,
         Skills.flutter,
         Skills.openSourceDev,
-        Skills.sdkDevelopment,
         Skills.ciCd,
         Skills.aiTools,
         Skills.github,
+        Skills.sdkDevelopment,
       ],
-      experiences: [
-        Experiences.ynmoSenior,
-      ],
+      experiences: [],
     ),
     Project(
       title: 'Time of Day - Dart/Flutter Package',
@@ -167,6 +165,7 @@ class Projects {
         Skills.flutter,
         Skills.openSourceDev,
         Skills.ciCd,
+        Skills.aiTools,
         Skills.github,
       ],
       experiences: [
@@ -202,6 +201,7 @@ class Projects {
         Skills.flutter,
         Skills.openSourceDev,
         Skills.ciCd,
+        Skills.aiTools,
         Skills.github,
       ],
       experiences: [
@@ -258,6 +258,11 @@ class Projects {
           title: 'Google Play Store',
           type: MediaType.link,
         ),
+        Media(
+          media: UrlMedia.url('https://appgallery.huawei.com/app/C113411347'),
+          title: 'Huawei AppGallery',
+          type: MediaType.link,
+        ),
       ],
       skills: [
         Skills.dart,
@@ -312,7 +317,28 @@ class Projects {
       description: 'A comprehensive system that simplifies the management of childcare centers. '
           'Everything you need to manage childcare centers in one system! Supports activity planning, '
           'parent communication, attendance tracking, and child development monitoring.',
-      media: [],
+      media: [
+        Media(
+          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.ynmo.daycare&hl=en'),
+          title: 'Google Play Store',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://apps.apple.com/eg/app/ynmo-daycare/id6451186636'),
+          title: 'App Store',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://appgallery.huawei.com/app/C109751001'),
+          title: 'Huawei AppGallery',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://daycare.ynmodata.com'),
+          title: 'Website',
+          type: MediaType.link,
+        ),
+      ],
       skills: [
         Skills.dart,
         Skills.flutter,
@@ -347,6 +373,11 @@ class Projects {
         Media(
           media: UrlMedia.url('https://apps.apple.com/sa/app/ynmo-plan/id1492633399'),
           title: 'App Store',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://appgallery.huawei.com/app/C103366721'),
+          title: 'Huawei AppGallery',
           type: MediaType.link,
         ),
         Media(
@@ -390,6 +421,11 @@ class Projects {
           title: 'Google Play Store',
           type: MediaType.link,
         ),
+        Media(
+          media: UrlMedia.url('https://appgallery.huawei.com/app/C107566553'),
+          title: 'Huawei AppGallery',
+          type: MediaType.link,
+        ),
       ],
       skills: [
         Skills.dart,
@@ -416,16 +452,6 @@ class Projects {
           'awareness campaigns, and training programs for caregivers.',
       media: [
         Media(
-          media: UrlMedia.url('https://ynmodata.com/en/tifli/'),
-          title: 'Website',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://tifli.ynmodata.com/'),
-          title: 'Platform',
-          type: MediaType.link,
-        ),
-        Media(
           media: UrlMedia.url('https://apps.apple.com/eg/app/ynmo-tifli/id6443390362'),
           title: 'App Store',
           type: MediaType.link,
@@ -433,6 +459,21 @@ class Projects {
         Media(
           media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.tatralab.ynmo_parent&hl=en'),
           title: 'Google Play Store',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://appgallery.huawei.com/app/C107540835'),
+          title: 'Huawei AppGallery',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://ynmodata.com/en/tifli/'),
+          title: 'Website',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://tifli.ynmodata.com/'),
+          title: 'Platform',
           type: MediaType.link,
         ),
       ],
@@ -470,6 +511,11 @@ class Projects {
         Media(
           media: UrlMedia.url('https://apps.apple.com/ae/app/kashef-%D9%83%D8%A7%D8%B4%D9%81/id1636641638'),
           title: 'App Store',
+          type: MediaType.link,
+        ),
+        Media(
+          media: UrlMedia.url('https://appgallery.huawei.com/app/C106801261'),
+          title: 'Huawei AppGallery',
           type: MediaType.link,
         ),
       ],

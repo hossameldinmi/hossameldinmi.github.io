@@ -4,10 +4,10 @@ import 'package:cv_website/src/models/experience.dart';
 import 'package:cv_website/src/models/project.dart';
 
 enum SkillProficiency {
-  expert, // Green - 20-39%
-  advanced, // Pink/Magenta - 80%+
-  intermediate, // Cyan - 60-79%
-  beginner, // Orange - 40-59%
+  expert, // Green - 80%+
+  advanced, // Pink/Magenta - 60-79%
+  intermediate, // Cyan - 40-59%
+  beginner, // Orange - <40 %
 }
 
 class Skill {

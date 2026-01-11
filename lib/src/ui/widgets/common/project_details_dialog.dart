@@ -22,10 +22,44 @@ class ProjectDetailsDialog extends StatelessWidget {
 
     if (url.contains('play.google.com')) return FontAwesomeIcons.googlePlay;
     if (url.contains('apps.apple.com')) return FontAwesomeIcons.appStore;
-    if (url.contains('appgallery.huawei.com')) return FontAwesomeIcons.mobile;
+    if (url.contains('appgallery.huawei.com'))
+      return FontAwesomeIcons.appStoreIos; // Using iOS App Store icon as placeholder for Huawei
     if (url.contains('pub.dev')) return FontAwesomeIcons.cube;
     if (url.contains('github.com')) return FontAwesomeIcons.github;
     return FontAwesomeIcons.link;
+  }
+
+  Widget _getMediaIconWidget(Media media, Color color) {
+    if (media.media is! UrlMedia) {
+      return Icon(FontAwesomeIcons.link, size: 20, color: color);
+    }
+
+    final url = (media.media as UrlMedia).uri.toString().toLowerCase();
+
+    // For Huawei AppGallery, use a custom styled icon
+    if (url.contains('appgallery.huawei.com')) {
+      return Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: [Color(0xFFFF0000), Color(0xFFCC0000)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        child: const Center(
+          child: Icon(
+            Icons.shopping_bag,
+            color: Colors.white,
+            size: 13,
+          ),
+        ),
+      );
+    }
+
+    return Icon(_getMediaIcon(media), size: 20, color: color);
   }
 
   String _getMediaLabel(Media media) {
@@ -195,11 +229,7 @@ class ProjectDetailsDialog extends StatelessWidget {
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
-                                    _getMediaIcon(media),
-                                    size: 20,
-                                    color: theme.colorScheme.primary,
-                                  ),
+                                  _getMediaIconWidget(media, theme.colorScheme.primary),
                                   const SizedBox(width: 8),
                                   Text(
                                     _getMediaLabel(media),
