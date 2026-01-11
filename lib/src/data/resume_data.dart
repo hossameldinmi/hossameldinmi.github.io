@@ -18,9 +18,9 @@ class ResumeData {
     subtitle: 'I build exceptional mobile and web applications that solve real-world problems.',
     focusList: [
       'Native-iOS',
-      'Flutter Specialist',
+      'Flutter',
       'Cross-Platform Mobile Developer',
-      'Enterprise Mobile Architecture Enthusiastic',
+      'Scalable Architecture Consultant',
       'Open-Source Contributor',
     ],
     calendlyId: 'hossameldinmi',
@@ -41,7 +41,7 @@ class ResumeData {
     ),
     location: 'Agouza, Giza, Egypt',
     resume:
-        DocumentNetworkMedia.url('https://drive.google.com/file/d/1jmsBMDDT2RBrPtQPX-b0vkNfeaFfoyUn/view?usp=sharing'),
+        DocumentNetworkMedia.url('https://drive.google.com/file/d/13sCoWtPGaIY6yKfPP6sORHs8LadhmACd/view?usp=sharing'),
     contact: const Contact(
       email: 'hossameldinmi@gmail.com',
       linkedinUrl: 'https://linkedin.com/in/hossameldinmi',

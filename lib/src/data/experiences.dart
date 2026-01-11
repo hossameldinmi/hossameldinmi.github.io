@@ -208,7 +208,7 @@ class Experiences {
       name: 'Toptal',
       location: 'San Francisco, California, United States',
       logo: ImageAssetMedia(
-        assetPath: 'assets/logos/toptal_logo.png',
+        assetPath: 'assets/toptal_logo.png',
         mimeType: 'image/png',
         name: 'toptal_logo.png',
         size: 45.5.kb,
@@ -219,7 +219,7 @@ class Experiences {
       name: 'Ynmo | ينمو',
       location: 'Mecca, Makkah, Saudi Arabia',
       logo: ImageAssetMedia(
-        assetPath: 'assets/logos/ynmo_logo.png',
+        assetPath: 'assets/ynmo_logo.png',
         mimeType: 'image/png',
         name: 'ynmo_logo.png',
         size: 4.03.kb,
@@ -230,7 +230,7 @@ class Experiences {
       name: 'Andela',
       location: 'New York, United States',
       logo: ImageAssetMedia(
-        assetPath: 'assets/logos/andela_logo.png',
+        assetPath: 'assets/andela_logo.png',
         mimeType: 'image/png',
         name: 'andela_logo.png',
         size: 3.kb,
@@ -241,7 +241,7 @@ class Experiences {
       name: 'Portme',
       location: 'California, United States',
       logo: ImageAssetMedia(
-        assetPath: 'assets/logos/portme_logo.png',
+        assetPath: 'assets/portme_logo.png',
         mimeType: 'image/png',
         name: 'portme_logo.png',
         size: 3.86.kb,
@@ -252,7 +252,7 @@ class Experiences {
       name: 'Facegraph',
       location: 'California, United States',
       logo: ImageAssetMedia(
-        assetPath: 'assets/logos/facegraph_logo.png',
+        assetPath: 'assets/facegraph_logo.png',
         mimeType: 'image/png',
         name: 'facegraph_logo.png',
         size: 883.b,
@@ -263,7 +263,7 @@ class Experiences {
       name: 'EME International',
       location: 'Maadi, Cairo, Egypt',
       logo: ImageAssetMedia(
-        assetPath: 'assets/logos/eme_logo.png',
+        assetPath: 'assets/eme_logo.png',
         mimeType: 'image/png',
         name: 'eme_logo.png',
         size: 6.68.kb,

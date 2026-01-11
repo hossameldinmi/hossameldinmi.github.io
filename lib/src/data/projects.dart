@@ -215,6 +215,16 @@ class Projects {
       title: 'Ynmo - Warif',
       description: 'Mobile application for Warif educational services powered by Ynmo platform. '
           'Provides comprehensive educational management and tracking features for schools and educators.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/warif.png',
+          mimeType: 'image/png',
+          name: 'warif.png',
+          size: 4.03.kb,
+        ),
+        title: 'warif.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://apps.apple.com/kw/app/ynmo-warif/id6743444953'),
@@ -247,6 +257,16 @@ class Projects {
       title: 'Mahd - Daycare Management',
       description: 'Comprehensive daycare management system for early childhood education centers. '
           'Streamlines operations, parent communication, and child development tracking.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/mahd.png',
+          mimeType: 'image/png',
+          name: 'mahd.png',
+          size: 4.03.kb,
+        ),
+        title: 'mahd.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://apps.apple.com/eg/app/mahd/id6741514365'),
@@ -284,6 +304,16 @@ class Projects {
       title: 'Ynmo - MOD (Ministry of Defense)',
       description: 'Specialized educational management application for Ministry of Defense schools, '
           'providing comprehensive support for special education services and rehabilitation programs.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/mod.png',
+          mimeType: 'image/png',
+          name: 'mod.png',
+          size: 4.03.kb,
+        ),
+        title: 'mod.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://apps.apple.com/eg/app/ynmo-defense/id6740533290'),
@@ -317,6 +347,16 @@ class Projects {
       description: 'A comprehensive system that simplifies the management of childcare centers. '
           'Everything you need to manage childcare centers in one system! Supports activity planning, '
           'parent communication, attendance tracking, and child development monitoring.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/daycare.png',
+          mimeType: 'image/png',
+          name: 'daycare.png',
+          size: 4.03.kb,
+        ),
+        title: 'daycare.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.ynmo.daycare&hl=en'),
@@ -364,6 +404,16 @@ class Projects {
           'workflow—before, during, and after therapy sessions. The platform streamlines documentation, progress '
           'tracking, and communication, helping professionals provide more efficient, consistent, and impactful '
           'support to children with disabilities in both school and home settings.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/plan.png',
+          mimeType: 'image/png',
+          name: 'plan.png',
+          size: 4.03.kb,
+        ),
+        title: 'plan.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://play.google.com/store/apps/details?id=io.softcare.ynmo.android&hl=en'),
@@ -410,6 +460,16 @@ class Projects {
           'Provides comprehensive support for Special Education Teachers, Behavior Analysts, Speech Therapists, '
           'Occupational Therapists, and Physical Therapists delivering school-based or home-based services '
           'to children with disabilities.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/schs.png',
+          mimeType: 'image/png',
+          name: 'schs.png',
+          size: 4.03.kb,
+        ),
+        title: 'schs.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://apps.apple.com/us/app/ynmo-schs/id6443915348'),
@@ -450,6 +510,16 @@ class Projects {
           'from 8 months to 36 months. Provides early detection of language disorders, free sessions for over '
           '10,000 children across Saudi Arabia, comprehensive assessment services, early intervention programs, '
           'awareness campaigns, and training programs for caregivers.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/tifli.png',
+          mimeType: 'image/png',
+          name: 'tifli.png',
+          size: 4.03.kb,
+        ),
+        title: 'tifli.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://apps.apple.com/eg/app/ynmo-tifli/id6443390362'),
@@ -501,6 +571,16 @@ class Projects {
       description: 'Application provided by King Salman Relief and Humanitarian Aid Center in partnership '
           'with Ynmo. Helps determine if a child needs comprehensive autism assessment. Provides educational '
           'and awareness content about autism, specifically targeting children and families in refugee camps.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/kashef.png',
+          mimeType: 'image/png',
+          name: 'kashef.png',
+          size: 4.03.kb,
+        ),
+        title: 'kashef.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url(
@@ -542,6 +622,16 @@ class Projects {
           'evaluation for autism or other developmental disorders may be needed. Provides a comprehensive list '
           'of diagnostic and early intervention service providers in Saudi Arabia, along with empirically '
           'validated information and resources for parents.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/namaai.png',
+          mimeType: 'image/png',
+          name: 'namaai.png',
+          size: 4.03.kb,
+        ),
+        title: 'namaai.png',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://apps.apple.com/sa/app/namaai/id1607722385'),
@@ -579,7 +669,7 @@ class Projects {
           'their work, skills, and achievements in a modern, interactive format.',
       logo: Media(
         media: ImageAssetMedia(
-          assetPath: 'assets/logos/portme_logo.png',
+          assetPath: 'assets/portme_logo.png',
           mimeType: 'image/png',
           name: 'portme_logo.png',
           size: 3.86.kb,
@@ -644,6 +734,16 @@ class Projects {
       title: 'O7 Therapy',
       description: 'Online platform offering convenient access to psychotherapy services. '
           'Connects patients with licensed therapists for remote mental health support.',
+      logo: Media(
+        media: ImageAssetMedia(
+          assetPath: 'assets/o7.jpg',
+          mimeType: 'image/jpeg',
+          name: 'o7.jpg',
+          size: 4.03.kb,
+        ),
+        title: 'o7.jpg',
+        type: MediaType.image,
+      ),
       media: [
         Media(
           media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.eme.o7&hl=en'),
