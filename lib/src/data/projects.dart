@@ -750,6 +750,11 @@ class Projects {
           title: 'Google Play Store',
           type: MediaType.link,
         ),
+        Media(
+          media: UrlMedia.url('https://apps.apple.com/eg/app/o7-therapy/id1519413295'),
+          title: 'App Store',
+          type: MediaType.link,
+        ),
       ],
       skills: [
         Skills.cSharp,
