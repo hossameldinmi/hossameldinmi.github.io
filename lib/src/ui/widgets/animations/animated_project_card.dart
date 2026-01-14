@@ -50,10 +50,10 @@ class _AnimatedProjectCardState extends State<AnimatedProjectCard> {
     final url = (media.media as UrlMedia).uri.toString().toLowerCase();
 
     if (url.contains('play.google.com')) return 'Google Play Store';
-    if (url.contains('apps.apple.com')) return 'Apple App Store';
+    if (url.contains('apps.apple.com')) return 'App Store';
     if (url.contains('appgallery.huawei.com')) return 'Huawei AppGallery';
-    if (url.contains('pub.dev')) return 'pub.dev Package';
-    if (url.contains('github.com')) return 'GitHub Repository';
+    if (url.contains('pub.dev')) return 'pub.dev';
+    if (url.contains('github.com')) return 'GitHub';
     return media.title;
   }
 

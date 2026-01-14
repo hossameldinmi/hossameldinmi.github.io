@@ -15,16 +15,8 @@ class Projects {
           'that needs reliable file type detection. Built with 100% test coverage and full null safety support. '
           '+3K Downloads on pub.dev.',
       media: [
-        Media(
-          media: UrlMedia.url('https://pub.dev/packages/file_type_plus'),
-          title: 'pub.dev Package',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://github.com/hossameldinmi/file_type_plus'),
-          title: 'GitHub Repository',
-          type: MediaType.link,
-        ),
+        Media.pubDev('https://pub.dev/packages/file_type_plus'),
+        Media.github('https://github.com/hossameldinmi/file_type_plus'),
       ],
       skills: [
         Skills.dart,
@@ -51,16 +43,8 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://pub.dev/packages/media_source'),
-          title: 'pub.dev Package',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://github.com/hossameldinmi/media_source'),
-          title: 'GitHub Repository',
-          type: MediaType.link,
-        ),
+        Media.pubDev('https://pub.dev/packages/media_source'),
+        Media.github('https://github.com/hossameldinmi/media_source'),
       ],
       skills: [
         Skills.dart,
@@ -80,16 +64,8 @@ class Projects {
       description: 'A powerful and flexible pagination package for Dart and Flutter applications, '
           'providing efficient data loading and scroll management for large datasets.',
       media: [
-        Media(
-          media: UrlMedia.url('https://pub.dev/packages/paging_plus'),
-          title: 'pub.dev Package',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://github.com/hossameldinmi/paging_plus'),
-          title: 'GitHub Repository',
-          type: MediaType.link,
-        ),
+        Media.pubDev('https://pub.dev/packages/paging_plus'),
+        Media.github('https://github.com/hossameldinmi/paging_plus'),
       ],
       skills: [
         Skills.dart,
@@ -116,16 +92,8 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://pub.dev/packages/tawakkalna_sdk_flutter'),
-          title: 'pub.dev Package',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://github.com/hossameldinmi/tawakkalna_sdk_flutter'),
-          title: 'GitHub Repository',
-          type: MediaType.link,
-        ),
+        Media.pubDev('https://pub.dev/packages/tawakkalna_sdk_flutter'),
+        Media.github('https://github.com/hossameldinmi/tawakkalna_sdk_flutter'),
       ],
       skills: [
         Skills.dart,
@@ -149,16 +117,8 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://pub.dev/packages/time_of_day'),
-          title: 'pub.dev Package',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://github.com/hossameldinmi/time_of_day'),
-          title: 'GitHub Repository',
-          type: MediaType.link,
-        ),
+        Media.pubDev('https://pub.dev/packages/time_of_day'),
+        Media.github('https://github.com/hossameldinmi/time_of_day'),
       ],
       skills: [
         Skills.dart,
@@ -185,16 +145,8 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://pub.dev/packages/file_sized'),
-          title: 'pub.dev Package',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://github.com/hossameldinmi/file_sized'),
-          title: 'GitHub Repository',
-          type: MediaType.link,
-        ),
+        Media.pubDev('https://pub.dev/packages/file_sized'),
+        Media.github('https://github.com/hossameldinmi/file_sized'),
       ],
       skills: [
         Skills.dart,
@@ -226,16 +178,8 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/kw/app/ynmo-warif/id6743444953'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.ynmo.schools.warif&hl=en_US'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
+        Media.appStore('https://apps.apple.com/kw/app/ynmo-warif/id6743444953'),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.ynmo.schools.warif&hl=en_US'),
       ],
       skills: [
         Skills.dart,
@@ -268,21 +212,9 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/eg/app/mahd/id6741514365'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.ynmo.daycares.pif&hl=en_US'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://appgallery.huawei.com/app/C113411347'),
-          title: 'Huawei AppGallery',
-          type: MediaType.link,
-        ),
+        Media.appStore('https://apps.apple.com/eg/app/mahd/id6741514365'),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.ynmo.daycares.pif&hl=en_US'),
+        Media.huaweiAppGallery('https://appgallery.huawei.com/app/C113411347'),
       ],
       skills: [
         Skills.dart,
@@ -315,16 +247,8 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/eg/app/ynmo-defense/id6740533290'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.ynmo.tifli.mod&hl=en'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
+        Media.appStore('https://apps.apple.com/eg/app/ynmo-defense/id6740533290'),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.ynmo.tifli.mod&hl=en'),
       ],
       skills: [
         Skills.dart,
@@ -358,26 +282,10 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.ynmo.daycare&hl=en'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/eg/app/ynmo-daycare/id6451186636'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://appgallery.huawei.com/app/C109751001'),
-          title: 'Huawei AppGallery',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://daycare.ynmodata.com'),
-          title: 'Website',
-          type: MediaType.link,
-        ),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.ynmo.daycare&hl=en'),
+        Media.appStore('https://apps.apple.com/eg/app/ynmo-daycare/id6451186636'),
+        Media.huaweiAppGallery('https://appgallery.huawei.com/app/C109751001'),
+        Media.link('https://daycare.ynmodata.com', title: 'Website'),
       ],
       skills: [
         Skills.dart,
@@ -415,26 +323,10 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=io.softcare.ynmo.android&hl=en'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/sa/app/ynmo-plan/id1492633399'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://appgallery.huawei.com/app/C103366721'),
-          title: 'Huawei AppGallery',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://ynmodata.com/en/school/'),
-          title: 'Website',
-          type: MediaType.link,
-        ),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=io.softcare.ynmo.android&hl=en'),
+        Media.appStore('https://apps.apple.com/sa/app/ynmo-plan/id1492633399'),
+        Media.huaweiAppGallery('https://appgallery.huawei.com/app/C103366721'),
+        Media.link('https://ynmodata.com/en/school/', title: 'Website'),
       ],
       skills: [
         Skills.dart,
@@ -471,21 +363,9 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/us/app/ynmo-schs/id6443915348'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.ynmodata.sharjah&hl=en'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://appgallery.huawei.com/app/C107566553'),
-          title: 'Huawei AppGallery',
-          type: MediaType.link,
-        ),
+        Media.appStore('https://apps.apple.com/us/app/ynmo-schs/id6443915348'),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.ynmodata.sharjah&hl=en'),
+        Media.huaweiAppGallery('https://appgallery.huawei.com/app/C107566553'),
       ],
       skills: [
         Skills.dart,
@@ -521,31 +401,11 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/eg/app/ynmo-tifli/id6443390362'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.tatralab.ynmo_parent&hl=en'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://appgallery.huawei.com/app/C107540835'),
-          title: 'Huawei AppGallery',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://ynmodata.com/en/tifli/'),
-          title: 'Website',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://tifli.ynmodata.com/'),
-          title: 'Platform',
-          type: MediaType.link,
-        ),
+        Media.appStore('https://apps.apple.com/eg/app/ynmo-tifli/id6443390362'),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.tatralab.ynmo_parent&hl=en'),
+        Media.huaweiAppGallery('https://appgallery.huawei.com/app/C107540835'),
+        Media.link('https://ynmodata.com/en/tifli/', title: 'Website'),
+        Media.link('https://tifli.ynmodata.com/', title: 'Platform'),
       ],
       skills: [
         Skills.dart,
@@ -582,22 +442,10 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url(
-              'https://play.google.com/store/apps/details?id=io.softcare.ynmo.android.ksc.family&hl=en_US'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/ae/app/kashef-%D9%83%D8%A7%D8%B4%D9%81/id1636641638'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://appgallery.huawei.com/app/C106801261'),
-          title: 'Huawei AppGallery',
-          type: MediaType.link,
-        ),
+        Media.googlePlayStore(
+            'https://play.google.com/store/apps/details?id=io.softcare.ynmo.android.ksc.family&hl=en_US'),
+        Media.appStore('https://apps.apple.com/ae/app/kashef-%D9%83%D8%A7%D8%B4%D9%81/id1636641638'),
+        Media.huaweiAppGallery('https://appgallery.huawei.com/app/C106801261'),
       ],
       skills: [
         Skills.dart,
@@ -633,17 +481,9 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/sa/app/namaai/id1607722385'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url(
-              'https://play.google.com/store/apps/details?id=io.softcare.ynmo.android.shc.family&hl=ar&gl=US'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
+        Media.appStore('https://apps.apple.com/sa/app/namaai/id1607722385'),
+        Media.googlePlayStore(
+            'https://play.google.com/store/apps/details?id=io.softcare.ynmo.android.shc.family&hl=ar&gl=US'),
       ],
       skills: [
         Skills.dart,
@@ -678,11 +518,7 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://portme.app/'),
-          title: 'Website',
-          type: MediaType.link,
-        ),
+        Media.link('https://portme.app/', title: 'Website'),
       ],
       skills: [
         Skills.dart,
@@ -706,11 +542,7 @@ class Projects {
           '& hardware that provides the best attendance tracking and access control solutions. Features frictionless '
           'attendance tracking, powerful & safe facial recognition, world-class support, and around-the-clock reliability.',
       media: [
-        Media(
-          media: UrlMedia.url('https://facegraph.com/'),
-          title: 'Website',
-          type: MediaType.link,
-        ),
+        Media.link('https://facegraph.com/', title: 'Website'),
       ],
       skills: [
         Skills.dart,
@@ -745,16 +577,8 @@ class Projects {
         type: MediaType.image,
       ),
       media: [
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.eme.o7&hl=en'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
-        Media(
-          media: UrlMedia.url('https://apps.apple.com/eg/app/o7-therapy/id1519413295'),
-          title: 'App Store',
-          type: MediaType.link,
-        ),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.eme.o7&hl=en'),
+        Media.appStore('https://apps.apple.com/eg/app/o7-therapy/id1519413295'),
       ],
       skills: [
         Skills.cSharp,
@@ -774,11 +598,7 @@ class Projects {
       description: 'E-commerce platform enabling customers to easily purchase fresh water products with '
           'quick and reliable delivery to their preferred location. Offers a convenient and seamless shopping experience.',
       media: [
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=store.zid.athbwater'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=store.zid.athbwater'),
       ],
       skills: [
         Skills.cSharp,
@@ -800,11 +620,7 @@ class Projects {
           'and safest digital car rental service. Connects car owners with renters for affordable car sharing '
           'compared to traditional car rental companies.',
       media: [
-        Media(
-          media: UrlMedia.url('https://play.google.com/store/apps/details?id=com.eme.Dryve'),
-          title: 'Google Play Store',
-          type: MediaType.link,
-        ),
+        Media.googlePlayStore('https://play.google.com/store/apps/details?id=com.eme.Dryve'),
       ],
       skills: [
         Skills.cSharp,

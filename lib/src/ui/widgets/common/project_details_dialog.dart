@@ -32,19 +32,6 @@ class ProjectDetailsDialog extends StatelessWidget {
     return Icon(_getMediaIcon(media), size: 20, color: color);
   }
 
-  String _getMediaLabel(Media media) {
-    if (media.media is! UrlMedia) return media.title;
-
-    final url = (media.media as UrlMedia).uri.toString().toLowerCase();
-
-    if (url.contains('play.google.com')) return 'Google Play';
-    if (url.contains('apps.apple.com')) return 'App Store';
-    if (url.contains('appgallery.huawei.com')) return 'AppGallery';
-    if (url.contains('pub.dev')) return 'pub.dev';
-    if (url.contains('github.com')) return 'GitHub';
-    return media.title;
-  }
-
   Future<void> _launchURL(String url) async {
     final uri = Uri.parse(url);
     if (!await launchUrl(uri)) {
@@ -245,7 +232,7 @@ class ProjectDetailsDialog extends StatelessWidget {
                                   _getMediaIconWidget(media, theme.colorScheme.primary),
                                   const SizedBox(width: 8),
                                   Text(
-                                    _getMediaLabel(media),
+                                    media.title,
                                     style: GoogleFonts.roboto(
                                       fontSize: 14,
                                       color: theme.textTheme.bodyMedium?.color,
