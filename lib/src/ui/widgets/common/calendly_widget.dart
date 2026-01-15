@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class CalendlyWidget extends StatefulWidget {
-  final String id;
-  const CalendlyWidget({super.key, required this.id});
+  final String url;
+  const CalendlyWidget({super.key, required this.url});
 
   @override
   State<CalendlyWidget> createState() => _CalendlyWidgetState();
@@ -36,7 +36,7 @@ class _CalendlyWidgetState extends State<CalendlyWidget> {
     // Calendly URL with theme customization
     final isDark = Theme.brightnessOf(context) == Brightness.dark;
 
-    final baseUrl = 'https://calendly.com/${widget.id}';
+    final baseUrl = widget.url;
     final backgroundColor = isDark ? '0a192f' : 'ffffff';
     final textColor = isDark ? 'ccd6f6' : '0f172a';
     final primaryColor = isDark ? '64ffda' : '0ea5e9';
@@ -56,7 +56,7 @@ class _CalendlyWidgetState extends State<CalendlyWidget> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
 
-    final baseUrl = 'https://calendly.com/${widget.id}';
+    final baseUrl = widget.url;
     final backgroundColor = isDark ? '0a192f' : 'ffffff';
     final textColor = isDark ? 'ccd6f6' : '0f172a';
     final primaryColor = isDark ? '64ffda' : '0ea5e9';

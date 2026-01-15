@@ -23,7 +23,7 @@ class ResumeData {
       'Scalable Architecture Consultant',
       'Open-Source Contributor',
     ],
-    calendlyId: 'hossameldinmi',
+    calendlyUrl: 'https://calendly.com/hossameldinmi/snacks-coffee-break',
     about: '''
 - As a Senior Cross-Platform Mobile Engineer, I specialize in designing and developing high-performance mobile applications using Flutter, Dart, and iOS. With 7+ years of hands-on experience, I focus on delivering scalable, reliable, and user-centric mobile solutions that align with business objectives and enhance digital experiences.
 

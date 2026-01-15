@@ -348,7 +348,7 @@ class _CVHomePageState extends State<CVHomePage> {
             _loadedSections.contains('contact')
                 ? ContactSection(sectionKey: contactKey)
                 : _buildPlaceholder(context, 500, key: contactKey),
-            if (ResumeData.profile.calendlyId != null)
+            if (ResumeData.profile.calendlyUrl != null)
               _loadedSections.contains('calendly')
                   ? const CalendlySection()
                   : _buildPlaceholder(context, 800, key: calendlyKey),

@@ -62,7 +62,7 @@ class CalendlySection extends StatelessWidget {
               ),
               color: theme.cardColor,
               child: CalendlyWidget(
-                id: ResumeData.profile.calendlyId ?? '',
+                url: ResumeData.profile.calendlyUrl ?? '',
               ),
             ),
           ),
