@@ -9,7 +9,7 @@ class Experiences {
   static final toptalSenior = Experience(
     title: 'Senior Mobile Software Engineer',
     locationType: 'Remote',
-    employmentType: 'Freelance',
+    employmentType: 'Full-Time',
     dateRange: DateRange(start: DateTime(2025, 11)),
     description:
         '𝑲𝒆𝒚 𝑹𝒆𝒔𝒑𝒐𝒏𝒔𝒊𝒃𝒊𝒍𝒊𝒕𝒊𝒆𝒔:\n• Write simple unit tests to ensure code reliability.\n• Participate in code reviews and follow clean code and best practice standards.\n• Communicate with project leads to clarify requirements and report progress regularly.',
@@ -33,8 +33,8 @@ class Experiences {
   static final ynmoSenior = Experience(
     title: 'Senior Mobile Software Engineer',
     locationType: 'Remote',
-    employmentType: 'Full-time',
-    dateRange: DateRange(start: DateTime(2022, 2)),
+    employmentType: 'Full-Time',
+    dateRange: DateRange(start: DateTime(2022, 2), end: DateTime(2025, 10)),
     description:
         '𝑲𝒆𝒚 𝑹𝒆𝒔𝒑𝒐𝒏𝒔𝒊𝒃𝒊𝒍𝒊𝒕𝒊𝒆𝒔:\n• Lead the adoption of unit testing and best coding practices to ensure code reliability and maintainability, while incorporating Domain Driven Design (DDD) to align technical solutions with business needs.\n• Led the adoption of AI-assisted development workflows to accelerate feature delivery, refactoring, and automated testing while maintaining clean architecture and code quality.\n• Implement CI/CD pipelines on App Center to reduce release times by 70% and streamline delivery workflows, using Modular Architecture to improve scalability and maintainability.\n• Integrate advanced analytics and logging tools to enhance bug tracking, issue resolution, and overall observability, with a focus on Reactive Architecture for real-time event-driven solutions.\n• Collaborate with cross-functional teams to deliver high-quality, business-aligned mobile solutions, leveraging Domain Driven Design and Modular Architecture principles for robust and flexible systems.\n• Initiate widget testing for complex UI components, strengthening the quality and stability of mobile applications, while applying Reactive Architecture to ensure responsiveness and user-centric design.',
     skills: [
@@ -64,8 +64,8 @@ class Experiences {
   static final andelaSenior = Experience(
     title: 'Senior Mobile Software Engineer',
     locationType: 'Remote',
-    employmentType: 'Freelance',
-    dateRange: DateRange(start: DateTime(2022, 1)),
+    employmentType: 'Contract',
+    dateRange: DateRange(start: DateTime(2022, 1), end: DateTime(2025, 9)),
     description:
         '𝑲𝒆𝒚 𝑹𝒆𝒔𝒑𝒐𝒏𝒔𝒊𝒃𝒊𝒍𝒊𝒕𝒊𝒆𝒔:\n• Support in developing and maintaining mobile applications using Flutter and Dart.\n• Collaborate with team members on small feature implementations and bug fixes.\n• Assist in setting up or improving CI/CD pipelines under team guidance.',
     skills: [
@@ -106,7 +106,7 @@ class Experiences {
   static final facegraphSenior = Experience(
     title: 'Senior Software Engineer',
     locationType: 'Remote',
-    employmentType: 'Full-time',
+    employmentType: 'Full-Time',
     dateRange: DateRange(start: DateTime(2021, 10), end: DateTime(2022, 1)),
     description:
         '𝑲𝒆𝒚 𝑹𝒆𝒔𝒑𝒐𝒏𝒔𝒊𝒃𝒊𝒍𝒊𝒕𝒊𝒆𝒔:\n• Improved code reliability and quality by leading efforts to expand unit testing coverage.\n• Refactored legacy systems into clean, reactive architectures to enhance maintainability and scalability.\n• Designed and implemented CI/CD pipelines on Azure DevOps, optimizing development workflows and accelerating release cycles through build flavor configurations.',
@@ -136,7 +136,7 @@ class Experiences {
   static final facegraphMid = Experience(
     title: 'Software Engineer II',
     locationType: 'Hybrid',
-    employmentType: 'Full-time',
+    employmentType: 'Full-Time',
     dateRange: DateRange(start: DateTime(2019, 12), end: DateTime(2021, 10)),
     description:
         '𝑲𝒆𝒚 𝑹𝒆𝒔𝒑𝒐𝒏𝒔𝒊𝒃𝒊𝒍𝒊𝒕𝒊𝒆𝒔:\n• Enhanced application performance and scalability across platforms, increasing unit testing coverage and maintaining clean code practices.\n• Collaborated with cross-functional teams to design, implement, and deploy new features while refactoring legacy systems to a clean, reactive architecture.\n• Set up CI/CD pipelines on Azure DevOps, introduced build flavors to optimize development and release times, and assisted in defining technical guidelines and coding standards.',
@@ -162,7 +162,7 @@ class Experiences {
   static final emeSpecialist = Experience(
     title: 'Specialist Software Engineer (Cross-Platform)',
     locationType: 'On-site',
-    employmentType: 'Full-time',
+    employmentType: 'Full-Time',
     dateRange: DateRange(start: DateTime(2019, 2), end: DateTime(2019, 12)),
     description:
         '𝑲𝒆𝒚 𝑹𝒆𝒔𝒑𝒐𝒏𝒔𝒊𝒃𝒊𝒍𝒊𝒕𝒊𝒆𝒔:\n• Enhanced performance and code readability.\n• Initiated coding standards and guidelines with the team leader.\n• Integrating with analytics providers for apps.\n• Revamping Xamarin Core layer project into Flutter.',
@@ -184,7 +184,7 @@ class Experiences {
   static final emeAssociate = Experience(
     title: 'Associate Software Engineer (Cross-Platform)',
     locationType: 'On-site',
-    employmentType: 'Full-time',
+    employmentType: 'Full-Time',
     dateRange: DateRange(start: DateTime(2018, 3), end: DateTime(2019, 2)),
     description:
         '𝑲𝒆𝒚 𝑹𝒆𝒔𝒑𝒐𝒏𝒔𝒊𝒃𝒊𝒍𝒊𝒕𝒊𝒆𝒔:\n• Building Cross-Platform Apps using Xamarin.Forms.\n• Integrating with any backend APIs.\n• Release and Publish Apps to the Store.',
